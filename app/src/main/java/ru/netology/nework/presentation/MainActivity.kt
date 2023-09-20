@@ -1,12 +1,16 @@
 package ru.netology.nework.presentation
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
+import ru.netology.nework.R
 
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 }
 
