@@ -8,9 +8,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.netology.nework.R
 import ru.netology.nework.databinding.FragmentPostsBinding
 import ru.netology.nework.presentation.adapter.PostAdapter
 import ru.netology.nework.presentation.viewmodel.PostViewModel
@@ -32,7 +34,11 @@ class FragmentPosts : Fragment() {
 
         binding.postList.adapter = adapter
 
-        viewModel.getAllPosts()
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentPosts_to_fragmentUsers)
+        }
+
+//        viewModel.getAllPosts()
 
 //        viewModel.data.observe(viewLifecycleOwner) { state ->
 //            adapter.submitList(state.posts)

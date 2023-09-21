@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/fragmentPosts"
         android:name="ru.netology.nework.presentation.fragments.FragmentPosts"
-        android:label="FragmentPosts" />
+        android:label="FragmentPosts" >
+        <action
+            android:id="@+id/action_fragmentPosts_to_fragmentUsers"
+            app:destination="@id/fragmentUsers" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentUsers"
+        android:name="ru.netology.nework.presentation.fragments.FragmentUsers"
+        android:label="FragmentUsers" />
 </navigation>

@@ -1,5 +1,7 @@
 package ru.netology.nework.data.database.repository
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import ru.netology.nework.data.database.dao.PostDao
 import ru.netology.nework.data.database.entity.toDto
@@ -16,7 +18,7 @@ class PostRepositoryImpl @Inject constructor(
 ) : PostRepository {
     override val data = dao.getAll()
         .map { it.toDto() }
-//        .flowOn(Dispatchers.Default)
+        .flowOn(Dispatchers.Default)
 
     override suspend fun getAll() {
         try {
