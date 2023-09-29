@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import ru.netology.nework.BuildConfig
 import ru.netology.nework.BuildConfig.BASE_URL
+import ru.netology.nework.data.network.authentification.AppAuth
 import javax.inject.Singleton
 
 @Module
@@ -29,8 +30,18 @@ class ApiModule {
     @Provides
     fun provideOkHttp(
         logging: HttpLoggingInterceptor,
+        appAuth: AppAuth
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(logging)
+        .addInterceptor { chain ->
+            val request = appAuth.state.value.token?.let { token ->
+                chain.request()
+                    .newBuilder()
+                    .addHeader("Authorization", token)
+                    .build()
+            } ?: chain.request()
+            chain.proceed(request)
+        }
         .build()
 
     @Singleton
@@ -54,4 +65,16 @@ class ApiModule {
     fun provideUserApiService(
         retrofit: Retrofit
     ) : UserApiService = retrofit.create()
+
+    @Singleton
+    @Provides
+    fun provideAuthApiService(
+        retrofit: Retrofit
+    ) : AuthApiService = retrofit.create()
+
+    @Singleton
+    @Provides
+    fun provideEventApiService(
+        retrofit: Retrofit
+    ) : EventApiService = retrofit.create()
 }

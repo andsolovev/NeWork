@@ -5,5 +5,7 @@ import ru.netology.nework.domain.models.User
 
 interface UserRepository {
     val data: Flow<List<User>>
+
     suspend fun getAll()
+    suspend fun getUserById(id: Int) : User
 }

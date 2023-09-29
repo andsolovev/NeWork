@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_posts"
+        android:icon="@drawable/ic_posts_24"
+        android:title="@string/posts" />
+
+    <item
+        android:id="@+id/navigation_users"
+        android:icon="@drawable/ic_users_24"
+        android:title="@string/users" />
+
+    <item
+        android:id="@+id/navigation_events"
+        android:icon="@drawable/ic_calendar_24"
+        android:title="@string/events" />
+
+
+    <item
+        android:id="@+id/my_profile"
+        android:icon="@drawable/ic_person_24"
+        android:title="@string/profile" />
+
+</menu>

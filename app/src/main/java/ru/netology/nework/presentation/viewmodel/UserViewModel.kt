@@ -1,12 +1,15 @@
 package ru.netology.nework.presentation.viewmodel
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ru.netology.nework.domain.models.User
 import ru.netology.nework.domain.repository.UserRepository
 import ru.netology.nework.domain.usecases.GetAllUsersUseCase
+import ru.netology.nework.domain.usecases.GetUserByIdUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,12 +19,20 @@ class UserViewModel @Inject constructor(
 
     val data = repository.data
 
+    private val _user = MutableLiveData<User>()
+    val user: LiveData<User>
+        get() = _user
+
     val getAllUsersUseCase = GetAllUsersUseCase(repository)
+    val getUserByIdUseCase = GetUserByIdUseCase(repository)
 
     fun getAllUsers() = viewModelScope.launch {
-        Log.d("GAU", "Request sending")
-        getAllUsersUseCase.getAllUsers()
-        Log.d("GAU", "Request sent")
+        getAllUsersUseCase()
     }
 
+    fun getUserById(id: Int) {
+        viewModelScope.launch {
+            _user.value = getUserByIdUseCase.getUserById(id)
+        }
+    }
 }

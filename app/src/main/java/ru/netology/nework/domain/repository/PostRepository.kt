@@ -6,4 +6,6 @@ import ru.netology.nework.domain.models.Post
 interface PostRepository {
     val data: Flow<List<Post>>
     suspend fun getAll()
+
+    suspend fun savePost(post: Post)
 }

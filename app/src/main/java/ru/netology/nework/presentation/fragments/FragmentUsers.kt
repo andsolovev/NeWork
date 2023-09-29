@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -30,10 +29,6 @@ class FragmentUsers : Fragment() {
 
         binding.userList.adapter = adapter
 
-        binding.fab.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
         viewModel.getAllUsers()
 
         viewLifecycleOwner.lifecycle.coroutineScope.launch {
@@ -44,6 +39,5 @@ class FragmentUsers : Fragment() {
         }
     return binding.root
     }
-
 
 }

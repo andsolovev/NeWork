@@ -3,29 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/mini_spacing"
+    android:layout_marginStart="@dimen/mini_spacing"
+    android:layout_marginEnd="@dimen/mini_spacing"
+    android:backgroundTint="@color/md_theme_light_surface"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_marginTop="@dimen/mini_spacing"
+        android:layout_marginStart="@dimen/mini_spacing"
+        android:layout_marginEnd="@dimen/mini_spacing"
+        >
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/posts_avatar_size"
+            android:layout_height="@dimen/posts_avatar_size"
+            android:layout_marginBottom="@dimen/common_spacing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/header"
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/avatar" />
+
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_marginStart="@dimen/common_spacing"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Author"/>
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            tools:text="@string/author"/>
 
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/author"
             app:layout_constraintStart_toStartOf="@id/author"
-            tools:text="Post content"/>
+            tools:text="@string/job"/>
+
+        <TextView
+            android:id="@+id/dateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/job"
+            app:layout_constraintStart_toStartOf="@id/author"
+            tools:text="@tools:sample/date/ddmmyy"/>
+
+        <ImageView
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            app:srcCompat="@drawable/ic_more_vert_24" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="author, avatar, dateTime"/>
+        
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:layout_marginBottom="@dimen/common_spacing"
+            tools:text="@tools:sample/lorem"/>
+
+        <TextView
+            android:id="@+id/link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:layout_marginBottom="@dimen/common_spacing"
+            tools:text="@tools:sample/lorem"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="likeButton"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/likeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_spacing"
+            app:layout_constraintTop_toBottomOf="@id/link"
+            app:layout_constraintBottom_toBottomOf="@id/cardPost"
+            app:icon="@drawable/ic_thumb_up_off_alt_24"
+            app:layout_constraintStart_toStartOf="parent"
+            android:checkable="true"
+            app:iconTint="@color/like_checkbox_tint"
+            tools:text="@string/like_number_sample"
+            android:textColor="@color/cardview_dark_background"
+            android:backgroundTint="@color/md_theme_light_surface"
+            android:padding="@dimen/mini_spacing"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

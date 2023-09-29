@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetAllUsersUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
-    suspend fun getAllUsers() = repository.getAll()
+    suspend operator fun invoke() = repository.getAll()
 }

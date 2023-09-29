@@ -12,4 +12,7 @@ class DaoModule {
     fun providePostDao(db: AppDb): PostDao = db.postDao()
     @Provides
     fun provideUserDao(db: AppDb): UserDao = db.userDao()
+
+    @Provides
+    fun provideEventDao(db: AppDb): EventDao = db.eventDao()
 }

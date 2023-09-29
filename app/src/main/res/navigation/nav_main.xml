@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/fragmentPosts">
+    app:startDestination="@id/fragment_posts">
     <fragment
-        android:id="@+id/fragmentPosts"
+        android:id="@+id/fragment_posts"
         android:name="ru.netology.nework.presentation.fragments.FragmentPosts"
-        android:label="FragmentPosts" >
+        android:label="FragmentPosts"
+        tools:layout="@layout/fragment_posts">
         <action
             android:id="@+id/action_fragmentPosts_to_fragmentUsers"
-            app:destination="@id/fragmentUsers" />
+            app:destination="@id/fragment_users" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragmentProfile"
+            app:destination="@id/fragmentProfile" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragmentSignIn"
+            app:destination="@id/fragmentSignIn" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragmentSignUp"
+            app:destination="@id/fragmentSignUp" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragmentNewPost"
+            app:destination="@id/fragmentNewPost" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentUsers"
+        android:id="@+id/fragment_users"
         android:name="ru.netology.nework.presentation.fragments.FragmentUsers"
-        android:label="FragmentUsers" />
+        android:label="FragmentUsers"
+        tools:layout="@layout/fragment_users"/>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="ru.netology.nework.presentation.fragments.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragmentProfile_to_fragmentSignIn"
+            app:destination="@id/fragmentSignIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSignIn"
+        android:name="ru.netology.nework.presentation.fragments.FragmentSignIn"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_fragmentSignIn_to_fragmentSignUp"
+            app:destination="@id/fragmentSignUp" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSignUp"
+        android:name="ru.netology.nework.presentation.fragments.FragmentSignUp"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_fragmentSignUp_to_fragment_posts"
+            app:destination="@id/fragment_posts" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNewPost"
+        android:name="ru.netology.nework.presentation.fragments.FragmentNewPost"
+        android:label="FragmentNewPost" />
 </navigation>

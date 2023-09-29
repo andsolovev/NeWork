@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.netology.nework.R
 import ru.netology.nework.databinding.CardUserBinding
 import ru.netology.nework.domain.models.User
 
@@ -16,9 +18,14 @@ class UserAdapter : ListAdapter <User, UserAdapter.UserViewHolder>(DiffCallback)
         fun bind(user: User) {
             with(binding) {
                 userName.text = user.name
-                avatar.text = user.avatar
+//                job.text = user.
             }
-
+            Glide.with(binding.avatar)
+                .load(user.avatar)
+                .timeout(10_000)
+                .error(R.drawable.ic_person_24)
+                .circleCrop()
+                .into(binding.avatar)
         }
     }
 
