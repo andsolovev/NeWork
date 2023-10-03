@@ -8,7 +8,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.netology.nework.domain.models.PhotoModel
+import ru.netology.nework.domain.model.PhotoModel
 import ru.netology.nework.domain.usecases.LogOutUseCase
 import ru.netology.nework.domain.usecases.RegisterUserUseCase
 import ru.netology.nework.domain.usecases.UpdateUserUseCase

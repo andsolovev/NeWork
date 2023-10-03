@@ -1,4 +1,4 @@
-package ru.netology.nework.domain.models
+package ru.netology.nework.domain.model
 
 data class Post(
     val id: Int,

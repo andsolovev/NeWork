@@ -94,17 +94,17 @@ class FragmentSignUp : Fragment() {
                         binding.name.text.toString(),
                         authViewModel.photo.value?.file
                     )
-            }
-        }
+                authViewModel.state.observe(viewLifecycleOwner) {
+                    if(it.id != 0) {
+                        Toast.makeText(
+                            context,
+                            R.string.you_have_successfully_registered,
+                            Toast.LENGTH_LONG
+                        ).show()
+                        findNavController().navigate(R.id.action_fragmentSignUp_to_fragment_posts)
+                    }
+                }
 
-        authViewModel.state.observe(viewLifecycleOwner) {
-            if(it.id != 0) {
-                Toast.makeText(
-                    context,
-                    R.string.you_have_successfully_registered,
-                    Toast.LENGTH_LONG
-                ).show()
-                findNavController().navigate(R.id.action_fragmentSignUp_to_fragment_posts)
             }
         }
 

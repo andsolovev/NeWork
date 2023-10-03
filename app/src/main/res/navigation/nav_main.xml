@@ -14,42 +14,50 @@
             app:destination="@id/fragment_users" />
         <action
             android:id="@+id/action_fragment_posts_to_fragmentProfile"
-            app:destination="@id/fragmentProfile" />
+            app:destination="@id/fragment_profile" />
         <action
             android:id="@+id/action_fragment_posts_to_fragmentSignIn"
-            app:destination="@id/fragmentSignIn" />
+            app:destination="@id/fragment_sign_in" />
         <action
             android:id="@+id/action_fragment_posts_to_fragmentSignUp"
-            app:destination="@id/fragmentSignUp" />
+            app:destination="@id/fragment_sign_up" />
         <action
             android:id="@+id/action_fragment_posts_to_fragmentNewPost"
-            app:destination="@id/fragmentNewPost" />
+            app:destination="@id/fragment_new_post" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragment_profile"
+            app:destination="@id/fragment_profile" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragmentEvents"
+            app:destination="@id/fragmentEvents" />
+        <action
+            android:id="@+id/action_fragment_posts_self"
+            app:destination="@id/fragment_posts" />
+        <action
+            android:id="@+id/action_fragment_posts_to_fragmentAttachment"
+            app:destination="@id/fragmentAttachment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_users"
         android:name="ru.netology.nework.presentation.fragments.FragmentUsers"
         android:label="FragmentUsers"
-        tools:layout="@layout/fragment_users"/>
-    <fragment
-        android:id="@+id/fragmentProfile"
-        android:name="ru.netology.nework.presentation.fragments.FragmentProfile"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_users">
         <action
-            android:id="@+id/action_fragmentProfile_to_fragmentSignIn"
-            app:destination="@id/fragmentSignIn" />
+            android:id="@+id/action_fragment_users_to_fragment_profile"
+            app:destination="@id/fragment_profile" />
     </fragment>
+
     <fragment
-        android:id="@+id/fragmentSignIn"
+        android:id="@+id/fragment_sign_in"
         android:name="ru.netology.nework.presentation.fragments.FragmentSignIn"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_fragmentSignIn_to_fragmentSignUp"
-            app:destination="@id/fragmentSignUp" />
+            app:destination="@id/fragment_sign_up" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentSignUp"
+        android:id="@+id/fragment_sign_up"
         android:name="ru.netology.nework.presentation.fragments.FragmentSignUp"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
@@ -58,7 +66,22 @@
             app:destination="@id/fragment_posts" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentNewPost"
+        android:id="@+id/fragment_new_post"
         android:name="ru.netology.nework.presentation.fragments.FragmentNewPost"
-        android:label="FragmentNewPost" />
+        android:label="FragmentNewPost"
+        tools:layout="@layout/fragment_new_post"/>
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="ru.netology.nework.presentation.fragments.FragmentProfile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/fragmentEvents"
+        android:name="ru.netology.nework.presentation.fragments.FragmentEvents"
+        android:label="fragment_events"
+        tools:layout="@layout/fragment_events" />
+    <fragment
+        android:id="@+id/fragmentAttachment"
+        android:name="ru.netology.nework.presentation.fragments.FragmentAttachment"
+        android:label="FragmentAttachment" />
 </navigation>

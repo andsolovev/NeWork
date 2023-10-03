@@ -58,7 +58,7 @@ class ApiModule {
     @Provides
     fun providePostApiService(
         retrofit: Retrofit
-    ) : PostsApiService = retrofit.create()
+    ) : PostApiService = retrofit.create()
 
     @Singleton
     @Provides
@@ -77,4 +77,10 @@ class ApiModule {
     fun provideEventApiService(
         retrofit: Retrofit
     ) : EventApiService = retrofit.create()
+
+    @Singleton
+    @Provides
+    fun provideJobApiService(
+        retrofit: Retrofit
+    ) : JobApiService = retrofit.create()
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.netology.nework.domain.models.User
+import ru.netology.nework.domain.model.User
 import ru.netology.nework.domain.repository.UserRepository
 import ru.netology.nework.domain.usecases.GetAllUsersUseCase
 import ru.netology.nework.domain.usecases.GetUserByIdUseCase

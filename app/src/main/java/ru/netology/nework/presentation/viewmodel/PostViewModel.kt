@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.netology.nework.domain.models.Post
+import ru.netology.nework.domain.model.Post
 import ru.netology.nework.domain.repository.PostRepository
 import ru.netology.nework.domain.usecases.GetAllPostsUseCase
+import ru.netology.nework.domain.usecases.LikePostByIdUseCase
+import ru.netology.nework.domain.usecases.RemovePostByIdUseCase
 import ru.netology.nework.domain.usecases.SavePostUseCase
+import ru.netology.nework.domain.usecases.UnlikePostByIdUseCase
 import ru.netology.nework.utils.SingleLiveEvent
 import javax.inject.Inject
 
@@ -39,17 +42,17 @@ class PostViewModel @Inject constructor(
 
     val getAllPostsUseCase = GetAllPostsUseCase(repository)
     val savePostUseCase = SavePostUseCase(repository)
+    val likePostByIdUseCase = LikePostByIdUseCase(repository)
+    val unlikePostByIdUseCase = UnlikePostByIdUseCase(repository)
+    val removePostByIdUseCase = RemovePostByIdUseCase(repository)
 
     val data = repository.data
 
     val edited = MutableLiveData(emptyPost)
+
     private val _postCreated = SingleLiveEvent<Unit>()
     val postCreated: LiveData<Unit>
         get() = _postCreated
-
-    init {
-        getAllPosts()
-    }
 
     fun getAllPosts() = viewModelScope.launch {
         getAllPostsUseCase()
@@ -76,5 +79,21 @@ class PostViewModel @Inject constructor(
             edited.value = edited.value?.copy(link = link)
         }
         return
+    }
+
+    fun edit(post: Post) {
+        edited.value = post
+    }
+
+    fun removeById(id: Int) = viewModelScope.launch {
+        removePostByIdUseCase.removePostById(id)
+    }
+
+    fun likeById(id: Int) = viewModelScope.launch {
+        likePostByIdUseCase.likePostById(id)
+    }
+
+    fun unlikeById(id: Int) = viewModelScope.launch {
+        unlikePostByIdUseCase.unlikePostById(id)
     }
 }

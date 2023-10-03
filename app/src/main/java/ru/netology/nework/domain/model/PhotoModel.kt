@@ -1,4 +1,4 @@
-package ru.netology.nework.domain.models
+package ru.netology.nework.domain.model
 
 import android.net.Uri
 import java.io.File

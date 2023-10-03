@@ -5,7 +5,7 @@ import ru.netology.nework.data.database.dao.UserDao
 import ru.netology.nework.data.database.entity.toDto
 import ru.netology.nework.data.database.entity.toUserEntity
 import ru.netology.nework.data.network.api.UserApiService
-import ru.netology.nework.domain.models.User
+import ru.netology.nework.domain.model.User
 import ru.netology.nework.domain.repository.UserRepository
 import javax.inject.Inject
 import javax.inject.Singleton

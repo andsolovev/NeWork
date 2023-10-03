@@ -32,5 +32,12 @@
     <string name="text_here">Text here</string>
     <string name="link_here">Link here</string>
     <string name="post">POST</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="jobname">JobName</string>
+    <string name="job_position">Job position</string>
+    <string name="job_period">( %1$s - %2$s )</string>
+    <string name="jobs">Jobs:</string>
+    <string name="invalid_link">invalid link</string>
 
 </resources>

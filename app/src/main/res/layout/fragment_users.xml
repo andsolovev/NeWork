@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.FragmentUsers">
 
-
 <!--    <com.google.android.material.appbar.AppBarLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content">-->
@@ -52,5 +51,12 @@
         android:layout_gravity="bottom|end"
         android:src="@drawable/icon_add_post_24"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_host_users"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:navGraph="@navigation/nav_users" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

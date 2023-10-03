@@ -3,68 +3,136 @@ package ru.netology.nework.presentation
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import ru.netology.nework.R
-import ru.netology.nework.presentation.fragments.FragmentEvents
-import ru.netology.nework.presentation.fragments.FragmentPosts
-import ru.netology.nework.presentation.fragments.FragmentProfile
-import ru.netology.nework.presentation.fragments.FragmentSignIn
-import ru.netology.nework.presentation.fragments.FragmentUsers
+import ru.netology.nework.databinding.ActivityMainBinding
 import ru.netology.nework.presentation.viewmodel.AuthViewModel
+import ru.netology.nework.presentation.viewmodel.UserViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var bottomNav : BottomNavigationView
 
     private val authViewModel: AuthViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
+    private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var hostFragment: NavHostFragment
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        bottomNav = findViewById(R.id.bottom_nav_view) as BottomNavigationView
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        bottomNav.setOnItemSelectedListener {
+        bottomNavView = binding.bottomNavView
+
+        hostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        val navController = hostFragment.navController
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_posts,
+                R.id.navigation_users,
+                R.id.navigation_events,
+                R.id.my_profile
+            )
+        )
+
+        bottomNavView.setupWithNavController(navController)
+
+        binding.bottomNavView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_posts -> {
-                    loadFragment(FragmentPosts())
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.fragment_posts)
                     true
                 }
 
                 R.id.navigation_users -> {
-                    loadFragment(FragmentUsers())
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.fragment_users)
                     true
                 }
 
                 R.id.navigation_events -> {
-                    loadFragment(FragmentEvents())
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.fragmentEvents)
                     true
                 }
 
                 R.id.my_profile -> {
-                    if(!authViewModel.authorized) {
-                        loadFragment(FragmentSignIn())
+                    if (!authViewModel.authorized) {
+                        findNavController(R.id.nav_host_fragment).navigate(R.id.fragment_sign_in)
+                    } else {
+                        lifecycleScope.launch {
+                            authViewModel.state.value?.id?.let {
+                                userViewModel.getUserById(it)
+                            }
+                            delay(1000)
+                            findNavController(R.id.nav_host_fragment).navigate(R.id.fragment_profile)
+                        }
+
                     }
-                    else loadFragment(FragmentProfile())
                     true
                 }
 
-                else -> {
-                    false
-                }
+                else -> false
             }
         }
+
+
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//
+//        bottomNav = findViewById(R.id.bottom_nav_view) as BottomNavigationView
+//
+//        bottomNav.setOnItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.navigation_posts -> {
+//                    loadFragment(FragmentPosts())
+//                    true
+//                }
+//
+//                R.id.navigation_users -> {
+//                    loadFragment(FragmentUsers())
+//                    true
+//                }
+//
+//                R.id.navigation_events -> {
+//                    loadFragment(FragmentEvents())
+//                    true
+//                }
+//
+//                R.id.my_profile -> {
+//                    if(!authViewModel.authorized) {
+//                        loadFragment(FragmentSignIn())
+//                    }
+//                    else loadFragment(FragmentMyProfile())
+//                    true
+//                }
+//
+//                else -> {
+//                    false
+//                }
+//            }
+//        }
     }
 
-    private  fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.nav_host_fragment,fragment)
-        transaction.commit()
-    }
+//    fun loadFragment(fragment: Fragment){
+//        val transaction = supportFragmentManager.beginTransaction()
+//        transaction.replace(R.id.nav_host_fragment,fragment)
+//        transaction.commit()
+//    }
 
 }
 

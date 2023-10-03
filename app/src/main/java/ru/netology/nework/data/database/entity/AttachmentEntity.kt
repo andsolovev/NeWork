@@ -1,8 +1,8 @@
 package ru.netology.nework.data.database.entity
 
 import androidx.room.Entity
-import ru.netology.nework.domain.models.Attachment
-import ru.netology.nework.domain.models.AttachmentType
+import ru.netology.nework.domain.model.Attachment
+import ru.netology.nework.domain.model.AttachmentType
 
 @Entity
 data class AttachmentEntity(

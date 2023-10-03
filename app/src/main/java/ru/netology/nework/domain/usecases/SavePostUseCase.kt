@@ -1,6 +1,6 @@
 package ru.netology.nework.domain.usecases
 
-import ru.netology.nework.domain.models.Post
+import ru.netology.nework.domain.model.Post
 import ru.netology.nework.domain.repository.PostRepository
 import javax.inject.Inject
 

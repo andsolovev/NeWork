@@ -3,7 +3,7 @@ package ru.netology.nework.data.database.entity
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.netology.nework.domain.models.Event
+import ru.netology.nework.domain.model.Event
 
 @Entity
 data class EventEntity(

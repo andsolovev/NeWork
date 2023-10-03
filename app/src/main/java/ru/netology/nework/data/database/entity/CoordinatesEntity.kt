@@ -1,7 +1,7 @@
 package ru.netology.nework.data.database.entity
 
 import androidx.room.Entity
-import ru.netology.nework.domain.models.Coordinates
+import ru.netology.nework.domain.model.Coordinates
 
 @Entity
 data class CoordinatesEntity(

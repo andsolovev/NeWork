@@ -2,7 +2,7 @@ package ru.netology.nework.data.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.netology.nework.domain.models.User
+import ru.netology.nework.domain.model.User
 
 @Entity
 class UserEntity(

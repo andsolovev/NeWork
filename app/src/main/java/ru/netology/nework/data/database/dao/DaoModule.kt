@@ -15,4 +15,7 @@ class DaoModule {
 
     @Provides
     fun provideEventDao(db: AppDb): EventDao = db.eventDao()
+
+    @Provides
+    fun provideJobDao(db: AppDb): JobDao = db.jobDao()
 }
