@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/common_spacing"
+        android:text="@string/fill_in_the_following_fields_to_create_an_account"
+        app:layout_constraintBottom_toTopOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/company_title"
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:layout_marginHorizontal="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        tools:layout_editor_absoluteX="0dp"
+        android:paddingTop="@dimen/common_spacing" />
+
+    <EditText
+        android:id="@+id/position"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:layout_marginHorizontal="@dimen/common_spacing"
+        android:hint="@string/position"
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:paddingTop="@dimen/common_spacing"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editJobStartLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|top"
+        android:hint="Job start"
+        android:inputType="date"
+        android:paddingHorizontal="@dimen/common_spacing"
+        android:paddingTop="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/position">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editJobStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            tools:text="@tools:sample/date/ddmmyy" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/start"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="date"-->
+<!--        android:hint="@string/job_start"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/position" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/finish"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="date"-->
+<!--        android:hint="@string/job_finish"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/editJobStartLayout" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editJobFinishLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|top"
+        android:hint="Job finish"
+        android:inputType="date"
+        android:paddingHorizontal="@dimen/common_spacing"
+        android:paddingTop="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/editJobStartLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editJobFinish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            tools:text="@tools:sample/date/ddmmyy" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/editJobFinishLayout"
+        android:hint="@string/link_here"
+        android:gravity="center"
+        android:inputType="text"
+        android:paddingTop="@dimen/common_spacing"/>
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        app:layout_constraintTop_toBottomOf="@id/link"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/common_spacing" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

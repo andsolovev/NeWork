@@ -8,4 +8,13 @@ interface EventRepository {
 
     suspend fun getAll()
 
+    suspend fun saveEvent(event: Event)
+    suspend fun removeEventById(id: Int)
+    suspend fun likeEventById(id: Int)
+    suspend fun unlikeEventById(id: Int)
+
+    suspend fun participateById(id: Int)
+
+    suspend fun unparticipateById(id: Int)
+
 }

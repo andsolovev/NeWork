@@ -4,9 +4,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import ru.netology.nework.data.database.dao.PostDao
+import ru.netology.nework.data.database.dao.WallDao
 import ru.netology.nework.data.database.entity.PostEntity
 import ru.netology.nework.data.database.entity.toDto
 import ru.netology.nework.data.database.entity.toEntity
+import ru.netology.nework.data.database.entity.toPostWallEntity
 import ru.netology.nework.data.network.api.PostApiService
 import ru.netology.nework.domain.model.Post
 import ru.netology.nework.domain.repository.PostRepository
@@ -19,10 +21,15 @@ import javax.inject.Singleton
 
 @Singleton
 class PostRepositoryImpl @Inject constructor(
-    private val dao: PostDao,
+    private val postDao: PostDao,
+    private val wallDao: WallDao,
     private val apiService: PostApiService
 ) : PostRepository {
-    override val data = dao.getAll()
+    override val data = postDao.getAll()
+        .map { it.toDto() }
+        .flowOn(Dispatchers.Default)
+
+    override val wall = wallDao.getAll()
         .map { it.toDto() }
         .flowOn(Dispatchers.Default)
 
@@ -33,9 +40,24 @@ class PostRepositoryImpl @Inject constructor(
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw Exception("Body is null")
-            dao.insert(body.toEntity())
+            postDao.insert(body.toEntity())
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    override suspend fun getPostsWall(userId: Int) {
+        wallDao.removeAll()
+        try {
+            val response = apiService.getPostsWall(userId)
+            if(!response.isSuccessful) {
+                throw ApiException(response.code(), response.message())
+            }
+            val body = response.body() ?: throw Exception("Body is null")
+            wallDao.removeAll()
+            wallDao.insert(body.toPostWallEntity())
+        } catch (e: Exception) {
+            throw Exception(e)
         }
     }
 
@@ -46,7 +68,7 @@ class PostRepositoryImpl @Inject constructor(
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw ApiException(response.code(), response.message())
-            dao.insert(PostEntity.fromDto(body))
+            postDao.insert(PostEntity.fromDto(body))
         } catch (e: IOException) {
             throw NetworkException
         } catch (e: Exception) {
@@ -60,7 +82,7 @@ class PostRepositoryImpl @Inject constructor(
             if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
-            dao.removePostById(id)
+            postDao.removePostById(id)
         } catch (e: IOException) {
             throw NetworkException
         } catch (e: Exception) {
@@ -75,7 +97,7 @@ class PostRepositoryImpl @Inject constructor(
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw ApiException(response.code(), response.message())
-            dao.insert(PostEntity.fromDto(body))
+            postDao.insert(PostEntity.fromDto(body))
         } catch (e: IOException) {
             throw NetworkException
         } catch (e: Exception) {
@@ -90,7 +112,7 @@ class PostRepositoryImpl @Inject constructor(
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw ApiException(response.code(), response.message())
-            dao.insert(PostEntity.fromDto(body))
+            postDao.insert(PostEntity.fromDto(body))
         } catch (e: IOException) {
             throw NetworkException
         } catch (e: Exception) {

@@ -10,7 +10,7 @@ import ru.netology.nework.data.database.entity.JobEntity
 @Dao
 interface JobDao {
 
-    @Query("SELECT * FROM JobEntity ORDER BY id DESC")
+    @Query("SELECT * FROM JobEntity ORDER BY start DESC")
     fun getAll(): Flow<List<JobEntity>>
 
     @Query("SELECT * FROM JobEntity WHERE id = :jobId LIMIT 1")

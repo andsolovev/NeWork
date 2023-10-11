@@ -13,7 +13,7 @@ data class CoordinatesEntity(
 
     companion object {
         fun fromDto(dto: Coordinates?): CoordinatesEntity? {
-            return if (dto != null) CoordinatesEntity(dto.latitude, dto.longitude) else null
+            return if (dto != null) CoordinatesEntity(dto.lat, dto.long) else null
         }
     }
 }

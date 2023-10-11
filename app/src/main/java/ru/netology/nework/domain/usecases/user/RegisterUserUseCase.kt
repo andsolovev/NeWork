@@ -1,4 +1,4 @@
-package ru.netology.nework.domain.usecases
+package ru.netology.nework.domain.usecases.user
 
 import ru.netology.nework.data.network.authentification.AppAuth
 import java.io.File

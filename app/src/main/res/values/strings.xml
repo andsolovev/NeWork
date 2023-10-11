@@ -28,7 +28,7 @@
     <string name="you_have_successfully_registered">You have successfully registered!</string>
     <string name="content">Content</string>
     <string name="speakers">Speakers:</string>
-    <string name="participants">Participants: %1$s</string>
+    <string name="participants">Participants: %1$d</string>
     <string name="text_here">Text here</string>
     <string name="link_here">Link here</string>
     <string name="post">POST</string>
@@ -39,5 +39,16 @@
     <string name="job_period">( %1$s - %2$s )</string>
     <string name="jobs">Jobs:</string>
     <string name="invalid_link">invalid link</string>
+    <string name="posts2">Posts:</string>
+    <string name="the_user_did_not_provide_information_about_his_job">The user did not provide any information about his job</string>
+    <string name="the_user_has_no_posts">The user has no posts</string>
+    <string name="company_title">Company title</string>
+    <string name="position">Position</string>
+    <string name="add">ADD</string>
+    <string name="job_start">Job start</string>
+    <string name="job_finish">Job finish</string>
+    <string name="save">SAVE</string>
+    <string name="attachment_link">Attached %1$s: %2$s</string>
+    <string name="attachment_url_here">Attachment url here</string>
 
 </resources>

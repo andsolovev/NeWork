@@ -7,8 +7,7 @@
     android:layout_marginTop="@dimen/mini_spacing"
     android:layout_marginStart="@dimen/mini_spacing"
     android:layout_marginEnd="@dimen/mini_spacing"
-    android:backgroundTint="@color/md_theme_light_surface"
-    >
+    android:backgroundTint="@color/md_theme_light_surface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardPost"
@@ -76,12 +75,21 @@
             app:constraint_referenced_ids="author, avatar, published"/>
 
         <TextView
-            android:id="@+id/dateTime"
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/header"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/common_spacing"
+            android:layout_marginTop="@dimen/mini_spacing"
+            tools:text="OFFLINE"/>
+
+        <TextView
+            android:id="@+id/dateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/type"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/mini_spacing"
             tools:text="@tools:sample/date/ddmmyy"/>
 
         <TextView
@@ -90,41 +98,185 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/dateTime"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="@dimen/common_spacing"
-            tools:text="@string/content"/>
+            android:layout_marginTop="@dimen/mini_spacing"
+            tools:text="@tools:sample/lorem"/>
+
+        <ImageButton
+            android:id="@+id/linkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorTransparent"
+            app:tint="@color/md_theme_dark_primary"
+            app:layout_constraintStart_toEndOf="@id/type"
+            app:layout_constraintTop_toTopOf="@id/type"
+            app:layout_constraintBottom_toBottomOf="@id/type"
+            app:srcCompat="@drawable/ic_link_24" />
+
+        <ImageButton
+            android:id="@+id/geoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorTransparent"
+            android:padding="0dp"
+            app:tint="@color/md_theme_dark_primary"
+            app:layout_constraintStart_toEndOf="@id/linkButton"
+            app:layout_constraintTop_toTopOf="@id/type"
+            app:layout_constraintBottom_toBottomOf="@id/type"
+            app:srcCompat="@drawable/ic_navigation_24" />
 
         <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
+            android:id="@+id/image_attachment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/mini_spacing"
             app:layout_constraintTop_toBottomOf="@id/content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:srcCompat="@tools:sample/avatars"/>
+            app:layout_constraintBottom_toTopOf="@id/link"
+            tools:srcCompat="@tools:sample/avatars"
+            tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/speakers"
+            android:id="@+id/link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/image"
+            android:autoLink="web"
+            app:layout_constraintTop_toBottomOf="@id/image_attachment"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/mini_spacing"
+            android:layout_marginBottom="@dimen/mini_spacing"
+            tools:text="http://google.com"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/audio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="audio_bar, buttons_audio"
+            tools:visibility="visible" />
+
+        <SeekBar
+            android:id="@+id/audio_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_spacing"
-            android:layout_marginBottom="@dimen/common_spacing"
-            tools:text="@string/speakers"/>
+            android:indeterminate="false"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/link" />
+
+        <LinearLayout
+            android:id="@+id/buttons_audio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/common_spacing"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/audio_bar">
+
+            <ProgressBar
+                android:id="@+id/progressBarAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:max="100"
+                android:progress="0"
+                tools:visibility="visible"/>
+
+            <ImageButton
+                android:id="@+id/button_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_play_24" />
+
+            <ImageButton
+                android:id="@+id/button_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_pause_24" />
+
+            <ImageButton
+                android:id="@+id/button_stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_stop_24" />
+
+            <ImageButton
+                android:id="@+id/invisible_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:visibility="invisible"
+                android:src="@drawable/ic_stop_24" />
+
+        </LinearLayout>
+
+        <!--        <VideoView-->
+        <!--            android:id="@+id/video_player"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            app:layout_constraintDimensionRatio="2"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/buttons_audio"-->
+
+
+
+        <!--            />-->
+
+        <FrameLayout
+            android:id="@+id/video_group"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:backgroundTint="@color/colorTransparent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/buttons_audio"
+            tools:visibility="visible">
+
+            <VideoView
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/button_play_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_24" />
+
+            <ProgressBar
+                android:id="@+id/progressBarVideo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone"
+                android:max="100"
+                android:progress="0" />
+
+        </FrameLayout>
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="likeButton"/>
+            app:constraint_referenced_ids="like_button"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/likeButton"
+            android:id="@+id/like_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_spacing"
-            app:layout_constraintTop_toBottomOf="@id/speakers"
+            android:layout_marginTop="@dimen/mini_spacing"
+            app:layout_constraintTop_toBottomOf="@id/video_group"
             app:layout_constraintBottom_toBottomOf="@id/cardPost"
             app:icon="@drawable/ic_thumb_up_off_alt_24"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,17 +287,43 @@
             android:backgroundTint="@color/md_theme_light_surface"
             android:padding="@dimen/mini_spacing"/>
 
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/participate_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/mini_spacing"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/video_group"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/cardPost"-->
+<!--            app:layout_constraintStart_toEndOf="@id/participants"-->
+<!--            app:icon="@drawable/ic_thumb_up_off_alt_24"-->
+<!--            android:checkable="true"-->
+<!--            app:iconTint="@color/event_checkbox_tint"-->
+<!--            tools:text="@string/like_number_sample"-->
+<!--            android:textColor="@color/cardview_dark_background"-->
+<!--            android:backgroundTint="@color/md_theme_light_surface"-->
+<!--            android:padding="@dimen/mini_spacing"/>-->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/participants"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:text="@string/participants"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/like_button"
             app:layout_constraintTop_toBottomOf="@id/footer"
             android:backgroundTint="@color/md_theme_light_surface"
             android:textColor="@color/cardview_dark_background"/>
 
+        <CheckBox
+            android:id="@+id/participantCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I'm in!"
+            app:layout_constraintStart_toEndOf="@id/participants"
+            app:layout_constraintTop_toTopOf="@id/participants"
+
+
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

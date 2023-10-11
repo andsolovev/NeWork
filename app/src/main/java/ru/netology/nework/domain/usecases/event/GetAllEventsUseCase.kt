@@ -1,4 +1,4 @@
-package ru.netology.nework.domain.usecases
+package ru.netology.nework.domain.usecases.event
 
 import ru.netology.nework.domain.repository.EventRepository
 import javax.inject.Inject

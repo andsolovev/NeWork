@@ -8,8 +8,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.netology.nework.domain.model.User
 import ru.netology.nework.domain.repository.UserRepository
-import ru.netology.nework.domain.usecases.GetAllUsersUseCase
-import ru.netology.nework.domain.usecases.GetUserByIdUseCase
+import ru.netology.nework.domain.usecases.user.GetAllUsersUseCase
+import ru.netology.nework.domain.usecases.user.GetUserByIdUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,4 +35,11 @@ class UserViewModel @Inject constructor(
             _user.value = getUserByIdUseCase.getUserById(id)
         }
     }
+
+    fun vipeUser() {
+        viewModelScope.launch {
+            _user.value = User()
+        }
+    }
+
 }

@@ -13,7 +13,7 @@ import ru.netology.nework.databinding.CardPostBinding
 import ru.netology.nework.domain.model.AttachmentType
 import ru.netology.nework.domain.model.Post
 import ru.netology.nework.presentation.adapter.onInteractionListener.OnPostInteractionListener
-import ru.netology.nework.utils.formatDateTime
+import ru.netology.nework.utils.formatDateTimeFromUTC
 
 class PostAdapter(
     private val onPostInteractionListener: OnPostInteractionListener
@@ -42,7 +42,7 @@ class PostViewHolder(
             author.text = post.author
             content.text = post.content
             link.text = post.link
-            dateTime.text = formatDateTime(post.published)
+            dateTime.text = formatDateTimeFromUTC(post.published)
             job.text = post.authorJob
             likeButton.text = "${post.likeOwnerIds?.size}"
             likeButton.setOnClickListener {
@@ -104,7 +104,7 @@ class PostViewHolder(
             Glide.with(binding.imageAttachment)
                 .load(post.attachment?.url)
                 .timeout(10_000)
-                .error(R.drawable.ic_person_24)
+                .error(R.drawable.ic_image_24)
                 .into(binding.imageAttachment)
         }
     }

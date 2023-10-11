@@ -52,7 +52,6 @@ class FragmentPosts : Fragment() {
         val binding = FragmentPostsBinding.inflate(inflater, container, false)
 
         postViewModel.getAllPosts()
-//        authViewModel.logOut()
 
         val adapter = PostAdapter(object : OnPostInteractionListener {
 

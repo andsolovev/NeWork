@@ -8,10 +8,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.netology.nework.domain.model.PhotoModel
-import ru.netology.nework.domain.usecases.LogOutUseCase
-import ru.netology.nework.domain.usecases.RegisterUserUseCase
-import ru.netology.nework.domain.usecases.UpdateUserUseCase
+import ru.netology.nework.domain.model.Photo
+import ru.netology.nework.domain.usecases.user.LogOutUseCase
+import ru.netology.nework.domain.usecases.user.RegisterUserUseCase
+import ru.netology.nework.domain.usecases.user.UpdateUserUseCase
 import ru.netology.nework.utils.SingleLiveEvent
 import java.io.File
 import javax.inject.Inject
@@ -32,10 +32,10 @@ class AuthViewModel @Inject constructor(
     val error: LiveData<Throwable>
         get() = _error
 
-    val noPhoto = PhotoModel()
+    val noPhoto = Photo()
 
     private val _photo = MutableLiveData(noPhoto)
-    val photo: LiveData<PhotoModel>
+    val photo: LiveData<Photo>
         get() = _photo
 
     fun registerUser(login: String, password: String, name: String, file: File?) =
@@ -49,7 +49,7 @@ class AuthViewModel @Inject constructor(
         }
 
     fun changePhoto(uri: Uri?, file: File?) {
-        _photo.value = PhotoModel(uri, file)
+        _photo.value = Photo(uri, file)
     }
 
     fun removePhoto() {

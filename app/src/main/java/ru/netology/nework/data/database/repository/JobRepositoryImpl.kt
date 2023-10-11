@@ -27,13 +27,14 @@ class JobRepositoryImpl @Inject constructor(
     override val data: Flow<List<Job>> = dao.getAll()
         .map { it.toDto() }
 
-    override suspend fun getJobsByUserId(userId: Int) {
+    override suspend fun getJobsByUserId(userId: Int) : List<Job> {
+        dao.removeAll()
         try {
-            dao.removeAll()
             val response = apiService.getJobsByUserId(userId)
             if (!response.isSuccessful) throw ApiException(response.code(), response.message())
             val body = response.body() ?: throw ApiException(response.code(), response.message())
             dao.insertJobs(body.fromDto())
+            return body
         } catch (e: IOException) {
             throw NetworkException
         } catch (e: SQLException) {
@@ -58,8 +59,20 @@ class JobRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteJobById(id: Int) {
-        TODO("Not yet implemented")
+    override suspend fun removeJobById(id: Int) {
+        try {
+            val response = apiService.removeMyJobById(id)
+            if (!response.isSuccessful) throw ApiException(response.code(), response.message())
+            dao.removeJobById(id)
+        } catch (e: IOException) {
+            throw NetworkException
+        } catch (e: Exception) {
+            throw UnknownException
+        }
+    }
+
+    override suspend fun removeJob() {
+        dao.removeAll()
     }
 
 }

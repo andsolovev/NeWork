@@ -1,18 +1,22 @@
 package ru.netology.nework.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ru.netology.nework.domain.model.Attachment
+import ru.netology.nework.domain.model.Photo
 import ru.netology.nework.domain.model.Post
 import ru.netology.nework.domain.repository.PostRepository
-import ru.netology.nework.domain.usecases.GetAllPostsUseCase
-import ru.netology.nework.domain.usecases.LikePostByIdUseCase
-import ru.netology.nework.domain.usecases.RemovePostByIdUseCase
-import ru.netology.nework.domain.usecases.SavePostUseCase
-import ru.netology.nework.domain.usecases.UnlikePostByIdUseCase
+import ru.netology.nework.domain.usecases.post.GetAllPostsUseCase
+import ru.netology.nework.domain.usecases.post.GetWallUseCase
+import ru.netology.nework.domain.usecases.post.LikePostByIdUseCase
+import ru.netology.nework.domain.usecases.post.RemovePostByIdUseCase
+import ru.netology.nework.domain.usecases.post.SavePostUseCase
+import ru.netology.nework.domain.usecases.post.UnlikePostByIdUseCase
 import ru.netology.nework.utils.SingleLiveEvent
 import javax.inject.Inject
 
@@ -34,6 +38,8 @@ val emptyPost = Post(
     ownedByMe = false
 )
 
+private val emptyAttachment = Attachment()
+private val emptyPhoto = Photo()
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
@@ -45,8 +51,11 @@ class PostViewModel @Inject constructor(
     val likePostByIdUseCase = LikePostByIdUseCase(repository)
     val unlikePostByIdUseCase = UnlikePostByIdUseCase(repository)
     val removePostByIdUseCase = RemovePostByIdUseCase(repository)
+    val getWallUseCase = GetWallUseCase(repository)
 
     val data = repository.data
+
+    val wall = repository.wall
 
     val edited = MutableLiveData(emptyPost)
 
@@ -54,8 +63,20 @@ class PostViewModel @Inject constructor(
     val postCreated: LiveData<Unit>
         get() = _postCreated
 
+//    private val _attachment = MutableLiveData(emptyAttachment)
+//    val attachment: LiveData<Attachment>
+//        get() = _attachment
+
+    private val _photo = MutableLiveData(emptyPhoto)
+    val photo: LiveData<Photo>
+        get() = _photo
+
     fun getAllPosts() = viewModelScope.launch {
         getAllPostsUseCase()
+    }
+
+    fun getWallPosts(userId: Int) = viewModelScope.launch {
+        getWallUseCase.getWall(userId)
     }
 
     fun savePost() {
@@ -72,11 +93,13 @@ class PostViewModel @Inject constructor(
         edited.value = emptyPost
     }
 
-    fun changeContent(content: String, link: String) {
+    fun changeContent(content: String, link: String, attachment: Attachment?) {
         val text = content.trim()
-        if (edited.value?.content != text && edited.value?.link != link) {
+        if (edited.value?.content != text || edited.value?.link != link) {
             edited.value = edited.value?.copy(content = text)
             edited.value = edited.value?.copy(link = link)
+            edited.value = edited.value?.copy(attachment = attachment)
+            Log.d("att2", "$attachment")
         }
         return
     }
@@ -84,6 +107,14 @@ class PostViewModel @Inject constructor(
     fun edit(post: Post) {
         edited.value = post
     }
+
+//    fun changeAttachment(url: String, type: AttachmentType) {
+//        _attachment.value = Attachment(url, type)
+//    }
+//
+//    fun removeAttachment() {
+//        _attachment.value = emptyAttachment
+//    }
 
     fun removeById(id: Int) = viewModelScope.launch {
         removePostByIdUseCase.removePostById(id)

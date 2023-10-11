@@ -38,8 +38,6 @@ class UserRepositoryImpl @Inject constructor(
 //            return dao.getUserById(id).toDto()
         } catch (e: Exception) {
             throw Exception(e)
-//            Log.d("user0", "user0 with id $id")
-//            return User()
         }
     }
 

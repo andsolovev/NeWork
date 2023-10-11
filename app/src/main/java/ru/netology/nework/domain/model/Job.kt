@@ -1,7 +1,7 @@
 package ru.netology.nework.domain.model
 
 data class Job(
-    val id: Int,
+    val id: Int = 0,
     val name: String,
     val position: String,
     val start: String,

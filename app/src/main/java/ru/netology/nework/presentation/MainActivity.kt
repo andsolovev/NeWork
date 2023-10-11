@@ -3,6 +3,9 @@ package ru.netology.nework.presentation
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsCompat.Type.ime
+import androidx.core.view.WindowInsetsCompat.toWindowInsetsCompat
+import androidx.core.view.isGone
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -10,16 +13,15 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.netology.nework.R
 import ru.netology.nework.databinding.ActivityMainBinding
+import ru.netology.nework.presentation.fragments.FragmentProfile
 import ru.netology.nework.presentation.viewmodel.AuthViewModel
 import ru.netology.nework.presentation.viewmodel.UserViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
 
     private val authViewModel: AuthViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
@@ -31,6 +33,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+            val insetsCompat = toWindowInsetsCompat(insets, view)
+            bottomNavView.isGone = insetsCompat.isVisible(ime())
+            view.onApplyWindowInsets(insets)
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -78,10 +86,11 @@ class MainActivity : AppCompatActivity() {
                             authViewModel.state.value?.id?.let {
                                 userViewModel.getUserById(it)
                             }
-                            delay(1000)
-                            findNavController(R.id.nav_host_fragment).navigate(R.id.fragment_profile)
                         }
-
+                        findNavController(R.id.nav_host_fragment).navigate(
+                            R.id.fragment_profile,
+                            FragmentProfile.createArguments(userId = authViewModel.state.value?.id)
+                        )
                     }
                     true
                 }
@@ -89,7 +98,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
 
 //        super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:contentDescription="@string/avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/noAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:contentDescription="@string/avatar"
+        app:layout_constraintStart_toStartOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintDimensionRatio="1:1"
+         />
+
+    <ImageButton
+        android:id="@+id/addJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+        android:src="@drawable/ic_add_24"
+        app:layout_constraintBottom_toBottomOf="@id/job"
+        app:layout_constraintStart_toEndOf="@id/job"
+        app:layout_constraintTop_toTopOf="@id/job"
+
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBarAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintStart_toStartOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:textColor="@color/md_theme_light_surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:layout_margin="@dimen/common_spacing"
+        android:visibility="invisible"
+        android:shadowColor="@color/md_theme_dark_scrim"
+        android:shadowRadius="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        android:gravity="center|bottom"
+        tools:text="@tools:sample/lorem"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="@dimen/common_spacing"
+        android:gravity="start"
+        android:layout_marginTop="@dimen/mini_spacing"
+        app:layout_constraintTop_toBottomOf="@id/avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addJob"
+        android:text="@string/jobs"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/jobList"
+        android:layout_marginHorizontal="@dimen/mini_spacing"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/job"
+        android:orientation="horizontal"
+        tools:listitem="@layout/card_job"
+        />
+
+    <TextView
+        android:id="@+id/no_job"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/the_user_did_not_provide_information_about_his_job"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/jobList"
+        app:layout_constraintEnd_toEndOf="@id/jobList"
+        app:layout_constraintTop_toTopOf="@id/jobList"
+        app:layout_constraintBottom_toBottomOf="@id/jobList"
+        tools:visibility="visible"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintStart_toStartOf="@id/no_job"
+        app:layout_constraintEnd_toEndOf="@id/no_job"
+        app:layout_constraintTop_toTopOf="@id/no_job"
+        app:layout_constraintBottom_toBottomOf="@id/no_job"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/posts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="@dimen/common_spacing"
+        android:gravity="start"
+        android:layout_marginBottom="@dimen/mini_spacing"
+        app:layout_constraintTop_toBottomOf="@id/jobList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/posts2"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

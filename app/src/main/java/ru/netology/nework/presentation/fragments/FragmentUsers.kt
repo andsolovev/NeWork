@@ -11,7 +11,6 @@ import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.netology.nework.R
@@ -37,9 +36,12 @@ class FragmentUsers : Fragment() {
             override fun onOpenProfile(user: User) {
                 lifecycleScope.launch {
                     viewModel.getUserById(user.id)
-                    delay(1000)
-                    findNavController().navigate(R.id.fragment_profile)
                 }
+                findNavController().navigate(
+                    R.id.fragment_profile,
+                    FragmentProfile.createArguments(userId = user.id)
+                )
+
             }
         })
 

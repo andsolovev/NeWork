@@ -74,14 +74,39 @@
         android:id="@+id/fragment_profile"
         android:name="ru.netology.nework.presentation.fragments.FragmentProfile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_fragment_profile_to_fragmentNewJob"
+            app:destination="@id/fragmentNewJob" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentEvents"
         android:name="ru.netology.nework.presentation.fragments.FragmentEvents"
         android:label="fragment_events"
-        tools:layout="@layout/fragment_events" />
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_fragmentEvents_to_fragmentNewEvent"
+            app:destination="@id/fragmentNewEvent" />
+        <action
+            android:id="@+id/action_fragmentEvents_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentAttachment"
         android:name="ru.netology.nework.presentation.fragments.FragmentAttachment"
         android:label="FragmentAttachment" />
+    <fragment
+        android:id="@+id/fragmentNewJob"
+        android:name="ru.netology.nework.presentation.fragments.FragmentNewJob"
+        android:label="FragmentNewJob"
+        tools:layout="@layout/fragment_new_job" />
+    <fragment
+        android:id="@+id/fragmentNewEvent"
+        android:name="ru.netology.nework.presentation.fragments.FragmentNewEvent"
+        android:label="FragmentNewEvent"
+        tools:layout="@layout/fragment_new_event"/>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="ru.netology.nework.presentation.fragments.FragmentMap"
+        android:label="MapFragment" />
 </navigation>

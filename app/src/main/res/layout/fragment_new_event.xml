@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.FragmentSignUp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/common_spacing">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:hint="Describe the event here"
+            android:inputType="textMultiLine"
+            android:minLines="3"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editEventDateLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Event date"
+            android:inputType="date"
+            app:layout_constraintTop_toBottomOf="@id/editText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/toggle_button_group">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEventDate"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:gravity="center"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="@dimen/common_spacing"-->
+<!--            app:layout_constraintStart_toEndOf="@id/editEventDateLayout"-->
+<!--            app:layout_constraintTop_toTopOf="@id/editEventDateLayout"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/editEventDateLayout"-->
+<!--            android:text="Online"/>-->
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toggle_button_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/common_spacing"
+            app:selectionRequired="true"
+            app:checkedButton="@id/buttonOffline"
+            app:singleSelection="true"
+            app:layout_constraintStart_toEndOf="@id/editEventDateLayout"
+            app:layout_constraintTop_toTopOf="@id/editEventDateLayout"
+            app:layout_constraintBottom_toBottomOf="@id/editEventDateLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonOffline"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:checkable="true"
+                android:text="OFFLINE"
+                app:cornerRadius="4dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonOnline"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:checkable="true"
+                android:text="ONLINE"
+                app:cornerRadius="4dp"/>
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editEventTypeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Event type"
+            android:inputType="date"
+            app:layout_constraintTop_toBottomOf="@id/editText"
+            app:layout_constraintStart_toEndOf="@id/editEventDateLayout"/>
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/buttonPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/editEventDateLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/addAttachmentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to your event post: "
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addImage"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_insert_photo_24"
+                app:iconSize="@dimen/icon_size"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addVideo"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_video_library_24"
+                app:iconSize="@dimen/icon_size"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addAudio"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_audio_file_24"
+                app:iconSize="@dimen/icon_size"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/attachmentGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="editAttachmentUrl,removeUrl,addUrl"
+            tools:visibility="visible" />
+
+
+        <EditText
+            android:id="@+id/editAttachmentUrl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/attachment_url_here"
+            android:inputType="textUri"
+            android:ellipsize="start"
+            android:layout_marginTop="@dimen/common_spacing"
+            app:layout_constraintTop_toBottomOf="@id/buttonPanel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/addUrl" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/removeUrl"
+            style="@style/Widget.AppTheme.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconTint="@color/md_theme_dark_errorContainer"
+            app:icon="@drawable/ic_cancel_24"
+            app:iconSize="@dimen/icon_size"
+            app:layout_constraintTop_toTopOf="@id/editAttachmentUrl"
+            app:layout_constraintBottom_toBottomOf="@id/editAttachmentUrl"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addUrl"
+            style="@style/Widget.AppTheme.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconTint="@color/seed"
+            app:icon="@drawable/ic_ok_circle_24"
+            app:iconSize="@dimen/icon_size"
+            app:layout_constraintTop_toTopOf="@id/editAttachmentUrl"
+            app:layout_constraintBottom_toBottomOf="@id/editAttachmentUrl"
+            app:layout_constraintEnd_toStartOf="@id/removeUrl"
+            />
+
+        <FrameLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/common_spacing"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/addButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editLong"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/photo"
+                tools:srcCompat="@tools:sample/avatars[3]" />
+
+            <TextView
+                android:id="@+id/mediaUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:gravity="center"
+                android:text="@string/attachment_link"
+                android:ellipsize="middle"
+                android:visibility="invisible"
+                tools:visibility="visible"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/remove"
+                style="@style/Widget.AppTheme.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginTop="@dimen/common_spacing"
+                android:backgroundTint="@color/colorTransparent"
+                android:gravity="center_vertical"
+                app:iconTint="@color/md_theme_dark_errorContainer"
+                app:icon="@drawable/ic_baseline_cancel_24"
+                app:iconSize="@dimen/icon_size" />
+
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/editLink"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editAttachmentUrl"
+            android:hint="@string/link_here"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/editLat"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editLink"
+            android:hint="Latitude here"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/editLong"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editLat"
+            android:hint="Longitude here"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:layout_marginTop="@dimen/common_spacing"
+            app:layout_constraintTop_toBottomOf="@id/imageContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
