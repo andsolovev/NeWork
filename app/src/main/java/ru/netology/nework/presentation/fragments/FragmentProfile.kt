@@ -31,7 +31,7 @@ import ru.netology.nework.databinding.FragmentProfileBinding
 import ru.netology.nework.domain.model.Job
 import ru.netology.nework.domain.model.Post
 import ru.netology.nework.presentation.adapter.JobAdapter
-import ru.netology.nework.presentation.adapter.PostAdapter
+import ru.netology.nework.presentation.adapter.WallAdapter
 import ru.netology.nework.presentation.adapter.onInteractionListener.OnJobInteractionListener
 import ru.netology.nework.presentation.adapter.onInteractionListener.OnPostInteractionListener
 import ru.netology.nework.presentation.fragments.FragmentAttachment.Companion.link
@@ -116,7 +116,7 @@ class FragmentProfile : Fragment() {
             }
         }, ownedByMe)
 
-        val postAdapter = PostAdapter(object : OnPostInteractionListener {
+        val wallAdapter = WallAdapter(object : OnPostInteractionListener {
 
             override fun onEdit(post: Post) {
                 postViewModel.edit(post)
@@ -245,18 +245,6 @@ class FragmentProfile : Fragment() {
                 }
             }
 
-//            override fun onCoords(post: Post) {
-//                val bundle = Bundle().apply {
-//                    putString(SEE, VALUE)
-//                    putDouble("lat", post.coords!!.lat)
-//                    putDouble("long", post.coords.long)
-//                }
-//                findNavController().navigate(
-//                    R.id.mapFragment,
-//                    bundle
-//                )
-//            }
-
             override fun onOpenUserProfile(post: Post) {
                 if (authViewModel.authorized) {
                     lifecycleScope.launch {
@@ -272,7 +260,7 @@ class FragmentProfile : Fragment() {
         })
 
         binding.userProfileToolbar.jobList.adapter = jobAdapter
-        binding.postList.adapter = postAdapter
+        binding.postList.adapter = wallAdapter
 
 
         lifecycleScope.launch {
@@ -284,7 +272,7 @@ class FragmentProfile : Fragment() {
 
         lifecycleScope.launch {
             postViewModel.wall.collectLatest {
-                postAdapter.submitList(it)
+                wallAdapter.submitList(it)
                 binding.noPosts.isVisible = it.isEmpty()
             }
         }

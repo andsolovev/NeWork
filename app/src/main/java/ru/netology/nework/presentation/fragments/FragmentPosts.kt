@@ -15,7 +15,6 @@ import android.widget.MediaController
 import android.widget.SeekBar
 import android.widget.Toast
 import android.widget.VideoView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -54,7 +53,7 @@ class FragmentPosts : Fragment() {
 
         _binding = FragmentPostsBinding.inflate(inflater, container, false)
 
-        postViewModel.getAllPosts()
+//        postViewModel.getAllPosts()
 //        postViewModel.getNewerPosts()
 
         val adapter = PostAdapter(object : OnPostInteractionListener {
@@ -201,15 +200,9 @@ class FragmentPosts : Fragment() {
         binding.postList.adapter = adapter
 
         lifecycleScope.launch {
-            try {
-                postViewModel.data.collect {posts ->
-                    adapter.submitList(posts)
-                    binding.emptyList.isVisible = posts.isEmpty()
-                }
-            } catch (exception: Exception) {
-                return@launch
+            postViewModel.data.collect {
+                adapter.submitData(it)
             }
-
         }
 
         binding.fab.setOnClickListener {

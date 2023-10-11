@@ -1,10 +1,18 @@
 package ru.netology.nework.data.database.repository
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import ru.netology.nework.data.database.dao.PostDao
+import ru.netology.nework.data.database.dao.PostRemoteKeyDao
 import ru.netology.nework.data.database.dao.WallDao
+import ru.netology.nework.data.database.db.AppDb
 import ru.netology.nework.data.database.entity.PostEntity
 import ru.netology.nework.data.database.entity.toDto
 import ru.netology.nework.data.database.entity.toEntity
@@ -23,11 +31,25 @@ import javax.inject.Singleton
 class PostRepositoryImpl @Inject constructor(
     private val postDao: PostDao,
     private val wallDao: WallDao,
-    private val apiService: PostApiService
+    private val apiService: PostApiService,
+    postRemoteKeyDao: PostRemoteKeyDao,
+    appDb: AppDb,
 ) : PostRepository {
-    override val data = postDao.getAll()
-        .map { it.toDto() }
-        .flowOn(Dispatchers.Default)
+    @OptIn(ExperimentalPagingApi::class)
+    override val data: Flow<PagingData<Post>> = Pager(
+        config = PagingConfig(pageSize = 10, enablePlaceholders = false),
+        pagingSourceFactory = { postDao.getPagingSource() },
+        remoteMediator = PostRemoteMediator(apiService, postDao, postRemoteKeyDao, appDb)
+    ).flow
+        .map {
+            it.map {
+                it.toDto()
+            }
+        }
+
+//    override val wall = wallDao.getAll()
+//        .map { it.toDto() }
+//        .flowOn(Dispatchers.Default)
 
     override val wall = wallDao.getAll()
         .map { it.toDto() }

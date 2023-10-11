@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.view.isVisible
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.netology.nework.R
@@ -15,9 +15,9 @@ import ru.netology.nework.domain.model.Post
 import ru.netology.nework.presentation.adapter.onInteractionListener.OnPostInteractionListener
 import ru.netology.nework.utils.formatDateTimeFromUTC
 
-class PostAdapter(
+class WallAdapter(
     private val onPostInteractionListener: OnPostInteractionListener,
-) : PagingDataAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(
@@ -34,7 +34,7 @@ class PostAdapter(
     }
 }
 
-class PostViewHolder(
+class WallViewHolder(
     private val binding: CardPostBinding,
     private val onPostInteractionListener: OnPostInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -119,7 +119,7 @@ class PostViewHolder(
     }
 }
 
-class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
+class WallDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.id == newItem.id
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ru.netology.nework.data.network.authentification.AppAuth
 import ru.netology.nework.domain.model.Attachment
 import ru.netology.nework.domain.model.Photo
 import ru.netology.nework.domain.model.Post
@@ -44,7 +45,8 @@ private val emptyPhoto = Photo()
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val repository: PostRepository
+    private val repository: PostRepository,
+    appAuth: AppAuth,
 ) : ViewModel() {
 
     val getAllPostsUseCase = GetAllPostsUseCase(repository)
@@ -55,7 +57,22 @@ class PostViewModel @Inject constructor(
     val getWallUseCase = GetWallUseCase(repository)
     val getNewerPostsUseCase = GetNewerPostsUseCase(repository)
 
+
     val data = repository.data
+//    val cached = repository.data.cachedIn(viewModelScope)
+//
+//    val data: Flow<PagingData<Post>> =
+//        appAuth.state
+//            .flatMapLatest { (myId, _) ->
+//                cached.map { pagingData ->
+//                    pagingData.map { post ->
+//                        post.copy(
+//                            ownedByMe = post.authorId == myId,
+//                            likedByMe = post.likeOwnerIds.contains(myId)
+//                        )
+//                    }
+//                }
+//            }
 
     val wall = repository.wall
 

@@ -21,4 +21,7 @@ class DaoModule {
 
     @Provides
     fun provideWallDao(db: AppDb): WallDao = db.wallDao()
+
+    @Provides
+    fun providePostRemoteKeyDao(db: AppDb): PostRemoteKeyDao = db.postRemoteKeyDao()
 }
