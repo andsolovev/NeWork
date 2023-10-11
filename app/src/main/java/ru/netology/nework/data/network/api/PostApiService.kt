@@ -13,6 +13,9 @@ interface PostApiService {
     @GET("posts")
     suspend fun getPosts() : Response<List<Post>>
 
+    @GET("posts/{id}/newer")
+    suspend fun getNewer(@Path("id") id: Int): Response<List<Post>>
+
     @GET("{author_id}/wall")
     suspend fun getPostsWall(@Path("author_id") id: Int) : Response<List<Post>>
 

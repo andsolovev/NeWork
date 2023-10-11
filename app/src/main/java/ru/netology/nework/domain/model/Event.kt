@@ -17,7 +17,7 @@ data class Event(
     val participantsIds: Set<Int> = emptySet(),
     val participatedByMe: Boolean = false,
     val attachment: Attachment? = null,
-    val link: String?  = "",
+    val link: String? = "",
     val ownedByMe: Boolean = false,
 )
 

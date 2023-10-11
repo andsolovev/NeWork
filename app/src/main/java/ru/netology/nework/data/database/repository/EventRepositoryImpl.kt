@@ -34,6 +34,22 @@ class EventRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getNewerEvents() {
+        try {
+            val postId = dao.max() ?: 0
+            val response = apiService.getNewer(postId)
+            if (!response.isSuccessful) {
+                throw ApiException(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiException(response.code(), response.message())
+            dao.insert(body.toEntity())
+        } catch (e: IOException) {
+            throw NetworkException
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     override suspend fun saveEvent(event: Event) {
         try {
             val response = apiService.saveEvent(event)

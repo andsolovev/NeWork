@@ -82,11 +82,16 @@ class FragmentProfile : Fragment() {
 
         if (ownedByMe) {
             binding.userProfileToolbar.addJob.visibility = View.VISIBLE
+            binding.userProfileToolbar.logout.visibility = View.VISIBLE
             binding.userProfileToolbar.addJob.setOnClickListener {
                 findNavController().navigate(R.id.action_fragment_profile_to_fragmentNewJob)
             }
+            binding.userProfileToolbar.logout.setOnClickListener {
+                authViewModel.logOut()
+            }
         } else {
             binding.userProfileToolbar.addJob.visibility = View.GONE
+            binding.userProfileToolbar.logout.visibility = View.GONE
         }
 
         val jobAdapter = JobAdapter(object : OnJobInteractionListener {
@@ -311,6 +316,10 @@ class FragmentProfile : Fragment() {
 
         jobViewModel.job.observe(viewLifecycleOwner) {
             binding.userProfileToolbar.noJob.isVisible = it.isEmpty()
+        }
+
+        authViewModel.state.observe(viewLifecycleOwner) {
+            if (it.id == 0) findNavController().navigate(R.id.fragment_sign_in)
         }
 
         return binding.root

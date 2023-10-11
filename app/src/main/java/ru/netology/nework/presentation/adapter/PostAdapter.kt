@@ -16,7 +16,7 @@ import ru.netology.nework.presentation.adapter.onInteractionListener.OnPostInter
 import ru.netology.nework.utils.formatDateTimeFromUTC
 
 class PostAdapter(
-    private val onPostInteractionListener: OnPostInteractionListener
+    private val onPostInteractionListener: OnPostInteractionListener,
 ) : ListAdapter<Post, PostViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -56,7 +56,13 @@ class PostViewHolder(
             audioGroup.isVisible = post.attachment?.type == AttachmentType.AUDIO
             videoGroup.isVisible = post.attachment?.type == AttachmentType.VIDEO
             buttonPlayVideo.setOnClickListener {
-                onPostInteractionListener.onPlayVideo(post, videoView, progressBarVideo, buttonPlayVideo, videoGroup)
+                onPostInteractionListener.onPlayVideo(
+                    post,
+                    videoView,
+                    progressBarVideo,
+                    buttonPlayVideo,
+                    videoGroup
+                )
                 progressBarVideo.isVisible = true
                 it.isVisible = false
             }
@@ -72,6 +78,8 @@ class PostViewHolder(
             link.setOnClickListener {
                 post.link?.let { onPostInteractionListener.onLink(post) }
             }
+
+
 
             menuButton.isVisible = post.ownedByMe
             menuButton.setOnClickListener {

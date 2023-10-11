@@ -12,6 +12,7 @@ import ru.netology.nework.domain.model.Photo
 import ru.netology.nework.domain.model.Post
 import ru.netology.nework.domain.repository.PostRepository
 import ru.netology.nework.domain.usecases.post.GetAllPostsUseCase
+import ru.netology.nework.domain.usecases.post.GetNewerPostsUseCase
 import ru.netology.nework.domain.usecases.post.GetWallUseCase
 import ru.netology.nework.domain.usecases.post.LikePostByIdUseCase
 import ru.netology.nework.domain.usecases.post.RemovePostByIdUseCase
@@ -52,6 +53,7 @@ class PostViewModel @Inject constructor(
     val unlikePostByIdUseCase = UnlikePostByIdUseCase(repository)
     val removePostByIdUseCase = RemovePostByIdUseCase(repository)
     val getWallUseCase = GetWallUseCase(repository)
+    val getNewerPostsUseCase = GetNewerPostsUseCase(repository)
 
     val data = repository.data
 
@@ -73,6 +75,10 @@ class PostViewModel @Inject constructor(
 
     fun getAllPosts() = viewModelScope.launch {
         getAllPostsUseCase()
+    }
+
+    fun getNewerPosts() = viewModelScope.launch {
+        getNewerPostsUseCase()
     }
 
     fun getWallPosts(userId: Int) = viewModelScope.launch {

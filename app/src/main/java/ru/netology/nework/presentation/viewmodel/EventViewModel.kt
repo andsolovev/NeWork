@@ -13,6 +13,7 @@ import ru.netology.nework.domain.model.EventType
 import ru.netology.nework.domain.model.Photo
 import ru.netology.nework.domain.repository.EventRepository
 import ru.netology.nework.domain.usecases.event.GetAllEventsUseCase
+import ru.netology.nework.domain.usecases.event.GetNewerEventsUseCase
 import ru.netology.nework.domain.usecases.event.LikeEventByIdUseCase
 import ru.netology.nework.domain.usecases.event.ParticipateEventByIdUseCase
 import ru.netology.nework.domain.usecases.event.RemoveEventByIdUseCase
@@ -33,6 +34,7 @@ class EventViewModel @Inject constructor(
     val data = repository.data
 
     val getAllEventsUseCase = GetAllEventsUseCase(repository)
+    val getNewerEventsUseCase = GetNewerEventsUseCase(repository)
     val saveEventUseCase = SaveEventUseCase(repository)
     val likeEventByIdUseCase = LikeEventByIdUseCase(repository)
     val unlikeEventByIdUseCase = UnlikeEventByIdUseCase(repository)
@@ -71,7 +73,7 @@ class EventViewModel @Inject constructor(
         dateTime: String,
         type: EventType,
         coords: Coordinates?
-        ) {
+    ) {
         val text = content.trim()
         if (edited.value?.content != text || edited.value?.link != link) {
             edited.value = edited.value?.copy(content = text)
@@ -110,5 +112,9 @@ class EventViewModel @Inject constructor(
 
     fun getAllEvents() = viewModelScope.launch {
         getAllEventsUseCase()
+    }
+
+    fun getNewerEvents() = viewModelScope.launch {
+        getNewerEventsUseCase()
     }
 }

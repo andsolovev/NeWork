@@ -12,6 +12,9 @@ interface EventApiService {
     @GET("events")
     suspend fun getAllEvents() : Response<List<Event>>
 
+    @GET("events/{id}/newer")
+    suspend fun getNewer(@Path("id") id: Int): Response<List<Event>>
+
     @POST("events")
     suspend fun saveEvent(@Body post: Event) : Response<Event>
 

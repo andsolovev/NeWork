@@ -27,14 +27,19 @@ class FragmentSignIn : Fragment() {
         val binding = FragmentSignInBinding.inflate(inflater, container, false)
 
         binding.signInButton.setOnClickListener {
-            if(binding.login.text.isBlank() || binding.password.text.isBlank()) {
+            if (binding.login.text.isBlank() || binding.password.text.isBlank()) {
                 Toast.makeText(context, "Please enter login and password", Toast.LENGTH_LONG).show()
             } else {
                 authViewModel.updateUser(
                     binding.login.text.toString(),
                     binding.password.text.toString()
                 )
+
             }
+        }
+
+        authViewModel.state.observe(viewLifecycleOwner) {
+            if (authViewModel.authorized) findNavController().navigate(R.id.action_fragment_sign_in_to_fragment_posts)
         }
 
         binding.createAccount.setOnClickListener {

@@ -17,7 +17,7 @@ import ru.netology.nework.utils.formatDateTimeFromUTC
 
 class EventAdapter(
     private val onEventInteractionListener: OnEventInteractionListener
-) : ListAdapter <Event, EventViewHolder>(EventDiffCallback) {
+) : ListAdapter<Event, EventViewHolder>(EventDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val binding = CardEventBinding.inflate(
@@ -71,7 +71,13 @@ class EventViewHolder(
             audioGroup.isVisible = event.attachment?.type == AttachmentType.AUDIO
             videoGroup.isVisible = event.attachment?.type == AttachmentType.VIDEO
             buttonPlayVideo.setOnClickListener {
-                onEventInteractionListener.onPlayVideo(event, videoView, progressBarVideo, buttonPlayVideo, videoGroup)
+                onEventInteractionListener.onPlayVideo(
+                    event,
+                    videoView,
+                    progressBarVideo,
+                    buttonPlayVideo,
+                    videoGroup
+                )
                 progressBarVideo.isVisible = true
                 it.isVisible = false
             }

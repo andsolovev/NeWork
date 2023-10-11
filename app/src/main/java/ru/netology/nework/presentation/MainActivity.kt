@@ -98,50 +98,7 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//
-//        bottomNav = findViewById(R.id.bottom_nav_view) as BottomNavigationView
-//
-//        bottomNav.setOnItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.navigation_posts -> {
-//                    loadFragment(FragmentPosts())
-//                    true
-//                }
-//
-//                R.id.navigation_users -> {
-//                    loadFragment(FragmentUsers())
-//                    true
-//                }
-//
-//                R.id.navigation_events -> {
-//                    loadFragment(FragmentEvents())
-//                    true
-//                }
-//
-//                R.id.my_profile -> {
-//                    if(!authViewModel.authorized) {
-//                        loadFragment(FragmentSignIn())
-//                    }
-//                    else loadFragment(FragmentMyProfile())
-//                    true
-//                }
-//
-//                else -> {
-//                    false
-//                }
-//            }
-//        }
     }
-
-//    fun loadFragment(fragment: Fragment){
-//        val transaction = supportFragmentManager.beginTransaction()
-//        transaction.replace(R.id.nav_host_fragment,fragment)
-//        transaction.commit()
-//    }
-
 }
 
 

@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_fragmentSignIn_to_fragmentSignUp"
             app:destination="@id/fragment_sign_up" />
+        <action
+            android:id="@+id/action_fragment_sign_in_to_fragment_posts"
+            app:destination="@id/fragment_posts" />
     </fragment>
     <fragment
         android:id="@+id/fragment_sign_up"

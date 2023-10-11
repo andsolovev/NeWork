@@ -229,6 +229,7 @@ class FragmentEvents : Fragment() {
         binding.eventList.adapter = adapter
 
         eventViewModel.getAllEvents()
+//        eventViewModel.getNewerEvents()
 
         viewLifecycleOwner.lifecycle.coroutineScope.launch {
             eventViewModel.data.collectLatest { events ->
@@ -241,7 +242,7 @@ class FragmentEvents : Fragment() {
 
     private fun unauthorized() {
         Toast.makeText(context, "Sign in to continue", Toast.LENGTH_LONG).show()
-         findNavController().navigate(R.id.fragment_sign_in)
+        findNavController().navigate(R.id.fragment_sign_in)
     }
 
 }

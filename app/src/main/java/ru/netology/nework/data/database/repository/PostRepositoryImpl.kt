@@ -46,6 +46,23 @@ class PostRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getNewerPosts() {
+        try {
+            val postId = postDao.max() ?: 0
+            val response = apiService.getNewer(postId)
+            if (!response.isSuccessful) {
+                throw ApiException(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiException(response.code(), response.message())
+            postDao.insert(body.toEntity())
+        } catch (e: IOException) {
+            throw NetworkException
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
     override suspend fun getPostsWall(userId: Int) {
         wallDao.removeAll()
         try {
@@ -53,7 +70,7 @@ class PostRepositoryImpl @Inject constructor(
             if(!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
-            val body = response.body() ?: throw Exception("Body is null")
+            val body = response.body() ?: throw ApiException(response.code(), response.message())
             wallDao.removeAll()
             wallDao.insert(body.toPostWallEntity())
         } catch (e: Exception) {

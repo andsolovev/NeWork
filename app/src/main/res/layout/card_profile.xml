@@ -17,17 +17,28 @@
         app:layout_constraintDimensionRatio="1:1"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_logout_24"
+        android:backgroundTint="@color/colorTransparent"
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        android:layout_margin="@dimen/mini_spacing"/>
+
     <ImageView
         android:id="@+id/noAvatar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:contentDescription="@string/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="@id/avatar"
-        app:layout_constraintDimensionRatio="1:1"
-         />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/addJob"
@@ -134,5 +145,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/posts2"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,8 +40,11 @@ class FragmentPosts : Fragment() {
     private val userViewModel: UserViewModel by activityViewModels()
 
     private val mediaPlayer = MediaPlayer()
-
     private var isPaused = false
+
+    private var _binding: FragmentPostsBinding? = null
+    private val binding: FragmentPostsBinding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,9 +52,10 @@ class FragmentPosts : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentPostsBinding.inflate(inflater, container, false)
+        _binding = FragmentPostsBinding.inflate(inflater, container, false)
 
         postViewModel.getAllPosts()
+//        postViewModel.getNewerPosts()
 
         val adapter = PostAdapter(object : OnPostInteractionListener {
 
@@ -103,7 +107,6 @@ class FragmentPosts : Fragment() {
                 } else {
                     isPaused = false
                     progressBar.visibility = View.VISIBLE
-//                    mediaPlayer.reset()
                     mediaPlayer.setDataSource(post.attachment?.url)
                     mediaPlayer.prepare()
                     mediaPlayer.start()
@@ -130,12 +133,11 @@ class FragmentPosts : Fragment() {
                 mediaPlayer.pause()
                 isPaused = true
             }
-//
+
             override fun onStopAudio(post: Post) {
                 mediaPlayer.apply {
                     stop()
                     reset()
-//                    release()
                 }
             }
 
@@ -182,18 +184,6 @@ class FragmentPosts : Fragment() {
                 }
             }
 
-//            override fun onCoords(post: Post) {
-//                val bundle = Bundle().apply {
-//                    putString(SEE, VALUE)
-//                    putDouble("lat", post.coords!!.lat)
-//                    putDouble("long", post.coords.long)
-//                }
-//                findNavController().navigate(
-//                    R.id.mapFragment,
-//                    bundle
-//                )
-//            }
-
             override fun onOpenUserProfile(post: Post) {
                 if (authViewModel.authorized) {
                     lifecycleScope.launch {
@@ -209,44 +199,6 @@ class FragmentPosts : Fragment() {
         })
 
         binding.postList.adapter = adapter
-
-//        var menuProvider: MenuProvider? = null
-//
-//        authViewModel.state.observe(viewLifecycleOwner) {
-//            menuProvider?.let { requireActivity()::removeMenuProvider }
-//        }
-//
-//        requireActivity().addMenuProvider(object: MenuProvider {
-//            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-//                menuInflater.inflate(R.menu.menu_auth, menu)
-//                menu.setGroupVisible(R.id.authorized, authViewModel.authorized)
-//                menu.setGroupVisible(R.id.unauthorized, !authViewModel.authorized)
-//            }
-//
-//            override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
-//                when(menuItem.itemId) {
-//                    R.id.menu_signIn -> {
-//                        findNavController().navigate(R.id.action_fragment_posts_to_fragmentSignIn)
-//                        true
-//                    }
-//                    R.id.menu_signUp -> {
-//                        findNavController().navigate(R.id.action_fragment_posts_to_fragmentSignUp)
-//                        true
-//                    }
-//                    R.id.menu_myProfile -> {
-//                        findNavController().navigate(R.id.action_fragment_posts_to_fragmentProfile)
-//                        true
-//                    }
-//                    R.id.menu_logout -> {
-//                        authViewModel.logOut()
-//                        true
-//                    }
-//                    else -> false
-//
-//                }
-//        }.apply {
-//            menuProvider = this
-//        }, viewLifecycleOwner)
 
         lifecycleScope.launch {
             try {
