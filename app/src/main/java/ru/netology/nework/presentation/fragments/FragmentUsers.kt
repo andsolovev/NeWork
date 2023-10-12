@@ -50,12 +50,12 @@ class FragmentUsers : Fragment() {
         viewModel.getAllUsers()
 
         viewLifecycleOwner.lifecycle.coroutineScope.launch {
-            viewModel.data.collectLatest {users ->
+            viewModel.data.collectLatest { users ->
                 adapter.submitList(users)
                 binding.emptyList.isVisible = users.isEmpty()
             }
         }
-    return binding.root
+        return binding.root
     }
 
 }

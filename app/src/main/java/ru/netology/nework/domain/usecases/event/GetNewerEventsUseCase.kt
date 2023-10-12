@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GetNewerEventsUseCase @Inject constructor(
     private val repository: EventRepository
-){
+) {
     suspend operator fun invoke() = repository.getNewerEvents()
 }

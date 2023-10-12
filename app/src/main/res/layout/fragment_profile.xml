@@ -37,10 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/card_post" />
 
         <ProgressBar
@@ -48,26 +48,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            android:visibility="invisible"
             android:max="100"
             android:progress="0"
-            app:layout_constraintStart_toStartOf="@id/postList"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/postList"
+            app:layout_constraintStart_toStartOf="@id/postList"
             app:layout_constraintTop_toTopOf="@id/postList"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/no_posts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/the_user_has_no_posts"
-            android:gravity="top|center"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/common_spacing"
-            app:layout_constraintStart_toStartOf="@id/postList"
+            android:gravity="top|center"
+            android:text="@string/the_user_has_no_posts"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/postList"
+            app:layout_constraintStart_toStartOf="@id/postList"
             app:layout_constraintTop_toTopOf="@id/postList"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

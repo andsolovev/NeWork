@@ -18,7 +18,10 @@ class PostRemoteMediator(
     private val appDb: AppDb,
 ) : RemoteMediator<Int, PostEntity>() {
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, PostEntity>): MediatorResult {
+    override suspend fun load(
+        loadType: LoadType,
+        state: PagingState<Int, PostEntity>
+    ): MediatorResult {
         try {
             val response = when (loadType) {
                 LoadType.REFRESH -> {
@@ -67,6 +70,7 @@ class PostRemoteMediator(
                             )
                         )
                     }
+
                     else -> {}
                 }
             }

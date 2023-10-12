@@ -53,7 +53,7 @@ class EventRepositoryImpl @Inject constructor(
     override suspend fun saveEvent(event: Event) {
         try {
             val response = apiService.saveEvent(event)
-            if(!response.isSuccessful) {
+            if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw ApiException(response.code(), response.message())

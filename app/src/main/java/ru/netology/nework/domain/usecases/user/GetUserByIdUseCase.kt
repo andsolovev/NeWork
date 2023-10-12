@@ -8,7 +8,7 @@ class GetUserByIdUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
 
-    suspend fun getUserById(id: Int) : User {
+    suspend fun getUserById(id: Int): User {
         return repository.getUserById(id)
     }
 }

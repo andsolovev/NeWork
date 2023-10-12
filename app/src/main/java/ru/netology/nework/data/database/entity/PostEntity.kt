@@ -43,6 +43,7 @@ data class PostEntity(
         attachment = attachment?.toDto(),
         ownedByMe = ownedByMe,
     )
+
     companion object {
         fun fromDto(dto: Post) =
             PostEntity(
@@ -64,5 +65,6 @@ data class PostEntity(
             )
     }
 }
+
 fun List<PostEntity>.toDto(): List<Post> = map(PostEntity::toDto)
 fun List<Post>.toEntity() = map { PostEntity.fromDto(it) }

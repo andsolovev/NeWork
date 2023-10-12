@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class LikePostByIdUseCase @Inject constructor(
     private val repository: PostRepository
-){
+) {
     suspend fun likePostById(id: Int) = repository.likePostById(id)
 }

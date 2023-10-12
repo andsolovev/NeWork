@@ -10,21 +10,21 @@
         android:id="@+id/eventList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/cardview_light_background"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/card_event"
-        android:backgroundTint="@color/cardview_light_background" />
+        tools:listitem="@layout/card_event" />
 
     <TextView
         android:id="@+id/emptyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty_list"
-        android:visibility="gone"
-        android:padding="24dp"
-        android:textSize="18sp"
         android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/empty_list"
+        android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +34,10 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/common_spacing"
         android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/common_spacing"
         android:src="@drawable/ic_add_plus_24"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        android:contentDescription="@string/add_event_button" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

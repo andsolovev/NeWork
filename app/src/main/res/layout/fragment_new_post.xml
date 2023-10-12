@@ -15,26 +15,26 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             android:hint="@string/text_here"
             android:inputType="textMultiLine"
-            android:minLines="3"/>
+            android:minLines="3"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/buttonPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/editText"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/editText">
 
             <TextView
                 android:id="@+id/addAvatarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add to your post: "
+                android:text="@string/add_to_your_post"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@id/name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_insert_photo_24"
-                app:iconSize="@dimen/icon_size"/>
+                app:iconSize="@dimen/icon_size" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addVideo"
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_video_library_24"
-                app:iconSize="@dimen/icon_size"/>
+                app:iconSize="@dimen/icon_size" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addAudio"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_audio_file_24"
-                app:iconSize="@dimen/icon_size"/>
+                app:iconSize="@dimen/icon_size" />
 
         </LinearLayout>
 
@@ -72,46 +72,44 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:constraint_referenced_ids="editAttachmentUrl,removeUrl,addUrl"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
 
         <EditText
             android:id="@+id/editAttachmentUrl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:ellipsize="start"
             android:hint="@string/attachment_url_here"
             android:inputType="textUri"
-            android:ellipsize="start"
-            android:layout_marginTop="@dimen/common_spacing"
-            app:layout_constraintTop_toBottomOf="@id/buttonPanel"
+            app:layout_constraintEnd_toStartOf="@id/addUrl"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/addUrl" />
+            app:layout_constraintTop_toBottomOf="@id/buttonPanel" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/removeUrl"
             style="@style/Widget.AppTheme.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconTint="@color/md_theme_dark_errorContainer"
             app:icon="@drawable/ic_cancel_24"
             app:iconSize="@dimen/icon_size"
-            app:layout_constraintTop_toTopOf="@id/editAttachmentUrl"
+            app:iconTint="@color/md_theme_dark_errorContainer"
             app:layout_constraintBottom_toBottomOf="@id/editAttachmentUrl"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="@id/editAttachmentUrl" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addUrl"
             style="@style/Widget.AppTheme.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconTint="@color/seed"
             app:icon="@drawable/ic_ok_circle_24"
             app:iconSize="@dimen/icon_size"
-            app:layout_constraintTop_toTopOf="@id/editAttachmentUrl"
+            app:iconTint="@color/seed"
             app:layout_constraintBottom_toBottomOf="@id/editAttachmentUrl"
             app:layout_constraintEnd_toStartOf="@id/removeUrl"
-            />
+            app:layout_constraintTop_toTopOf="@id/editAttachmentUrl" />
 
         <FrameLayout
             android:id="@+id/imageContainer"
@@ -140,11 +138,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="top"
+                android:ellipsize="middle"
                 android:gravity="center"
                 android:text="@string/attachment_link"
-                android:ellipsize="middle"
                 android:visibility="invisible"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/remove"
@@ -155,30 +153,31 @@
                 android:layout_marginTop="@dimen/common_spacing"
                 android:backgroundTint="@color/colorTransparent"
                 android:gravity="center_vertical"
-                app:iconTint="@color/md_theme_dark_errorContainer"
                 app:icon="@drawable/ic_baseline_cancel_24"
-                app:iconSize="@dimen/icon_size" />
+                app:iconSize="@dimen/icon_size"
+                app:iconTint="@color/md_theme_dark_errorContainer" />
 
         </FrameLayout>
 
         <EditText
             android:id="@+id/editLink"
-            android:layout_marginTop="@dimen/common_spacing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/editAttachmentUrl"
+            android:layout_marginTop="@dimen/common_spacing"
             android:hint="@string/link_here"
-            android:inputType="text"/>
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/editAttachmentUrl" />
 
         <Button
             android:id="@+id/postButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/post"
             android:layout_marginTop="@dimen/common_spacing"
-            app:layout_constraintTop_toBottomOf="@id/imageContainer"
+            android:text="@string/post"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/imageContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

@@ -21,11 +21,3 @@ class UserEntity(
 
 fun List<UserEntity>.toDto() = map(UserEntity::toDto)
 fun List<User>.toUserEntity() = map(UserEntity.Companion::fromDto)
-
-//fun Flow<UserEntity>.toDto() : Flow<User> = this.toDto()
-//fun User.toUserEntity() : UserEntity = this.toUserEntity()
-
-
-//fun toUserEntity(user: User) = UserEntity.fromDto(user)
-
-//fun toUserDto(userEntity: UserEntity) = UserEntity.

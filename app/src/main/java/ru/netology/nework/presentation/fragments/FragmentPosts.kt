@@ -156,7 +156,7 @@ class FragmentPosts : Fragment() {
                     setOnPreparedListener { mp ->
                         progressBar.visibility = View.GONE
 
-                        if(mp.videoHeight > mp.videoWidth) {
+                        if (mp.videoHeight > mp.videoWidth) {
                             videoGroup.layoutParams?.height =
                                 (displayWidth * (mp.videoHeight.toDouble() / mp.videoWidth)).toInt()
                             videoView.layoutParams.height = videoGroup.layoutParams?.height!!
@@ -190,10 +190,6 @@ class FragmentPosts : Fragment() {
                         findNavController().navigate(R.id.action_fragment_posts_to_fragmentProfile)
                     }
                 } else unauthorized()
-            }
-
-            override fun onCoords(post: Post) {
-                TODO("Not yet implemented")
             }
         })
 

@@ -15,15 +15,12 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.nework.R
 import ru.netology.nework.databinding.FragmentNewEventBinding
-import ru.netology.nework.databinding.FragmentNewPostBinding
 import ru.netology.nework.domain.model.Attachment
 import ru.netology.nework.domain.model.AttachmentType
 import ru.netology.nework.domain.model.Coordinates
 import ru.netology.nework.domain.model.EventType
 import ru.netology.nework.presentation.viewmodel.EventViewModel
-import ru.netology.nework.presentation.viewmodel.PostViewModel
 import ru.netology.nework.presentation.viewmodel.emptyEvent
-import ru.netology.nework.presentation.viewmodel.emptyPost
 import ru.netology.nework.utils.AndroidUtils
 import ru.netology.nework.utils.pickDate
 
@@ -186,10 +183,10 @@ class FragmentNewEvent : Fragment() {
             }
 
             addButton.setOnClickListener {
-                eventType = if(buttonOnline.isChecked) EventType.ONLINE else EventType.OFFLINE
+                eventType = if (buttonOnline.isChecked) EventType.ONLINE else EventType.OFFLINE
                 val lat = editLat.text.toString()
-                val long= editLong.text.toString()
-                coordinates = Coordinates(lat,long)
+                val long = editLong.text.toString()
+                coordinates = Coordinates(lat, long)
                 Log.d("coords!", "$coordinates, $lat, $long")
 
 

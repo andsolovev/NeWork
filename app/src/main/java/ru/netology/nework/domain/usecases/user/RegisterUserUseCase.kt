@@ -10,7 +10,7 @@ class RegisterUserUseCase @Inject constructor(
 
     val state = appAuth.state
 
-    suspend fun registerUser (login: String, password: String, name: String, file: File?) {
+    suspend fun registerUser(login: String, password: String, name: String, file: File?) {
         appAuth.registerUser(login, password, name, file)
     }
 }

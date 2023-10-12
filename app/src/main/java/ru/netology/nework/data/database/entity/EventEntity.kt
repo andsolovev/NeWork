@@ -50,6 +50,7 @@ data class EventEntity(
         link = link,
         ownedByMe = ownedByMe
     )
+
     companion object {
         fun fromDto(dto: Event) =
             EventEntity(
@@ -74,5 +75,6 @@ data class EventEntity(
             )
     }
 }
+
 fun List<EventEntity>.toDto(): List<Event> = map(EventEntity::toDto)
 fun List<Event>.toEntity() = map { EventEntity.fromDto(it) }

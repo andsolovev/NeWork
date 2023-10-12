@@ -7,5 +7,5 @@ interface UserRepository {
     val data: Flow<List<User>>
 
     suspend fun getAll()
-    suspend fun getUserById(id: Int) : User
+    suspend fun getUserById(id: Int): User
 }

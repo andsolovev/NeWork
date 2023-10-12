@@ -29,18 +29,13 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserById(id: Int) : User {
+    override suspend fun getUserById(id: Int): User {
         try {
             val response = apiService.getUserById(id)
             if (!response.isSuccessful) throw Exception("Response is unsuccessful")
             return response.body() ?: throw Exception("Body is null")
-//            dao.insert(body.toUserEntity())
-//            return dao.getUserById(id).toDto()
         } catch (e: Exception) {
             throw Exception(e)
         }
     }
-
-//    override suspend fun getUserById(id: Int) = dao.getUserById(id).toDto()
-
 }

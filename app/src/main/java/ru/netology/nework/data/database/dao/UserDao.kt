@@ -10,7 +10,7 @@ import ru.netology.nework.data.database.entity.UserEntity
 @Dao
 interface UserDao {
     @Query("SELECT * FROM UserEntity ORDER BY id DESC")
-    fun getAll() : Flow<List<UserEntity>>
+    fun getAll(): Flow<List<UserEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: UserEntity)
@@ -18,6 +18,4 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(users: List<UserEntity>)
 
-//    @Query("SELECT * FROM UserEntity WHERE id = :id")
-//    fun getUserById(id: Int): UserEntity
 }

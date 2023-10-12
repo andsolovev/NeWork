@@ -16,7 +16,13 @@ interface OnPostInteractionListener {
     fun onPauseAudio(post: Post)
     fun onStopAudio(post: Post)
     fun onPlayAudio(post: Post, seekBar: SeekBar, progressBar: View)
-    fun onPlayVideo(post: Post, videoView: VideoView, progressBar: View, playButton: View, videoGroup: FrameLayout)
+    fun onPlayVideo(
+        post: Post,
+        videoView: VideoView,
+        progressBar: View,
+        playButton: View,
+        videoGroup: FrameLayout
+    )
+
     fun onOpenUserProfile(post: Post)
-    fun onCoords(post: Post)
 }

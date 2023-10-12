@@ -10,13 +10,13 @@ import ru.netology.nework.domain.model.Event
 
 interface EventApiService {
     @GET("events")
-    suspend fun getAllEvents() : Response<List<Event>>
+    suspend fun getAllEvents(): Response<List<Event>>
 
     @GET("events/{id}/newer")
     suspend fun getNewer(@Path("id") id: Int): Response<List<Event>>
 
     @POST("events")
-    suspend fun saveEvent(@Body post: Event) : Response<Event>
+    suspend fun saveEvent(@Body post: Event): Response<Event>
 
     @DELETE("events/{event_id}")
     suspend fun removeEventById(@Path("event_id") id: Int): Response<Unit>

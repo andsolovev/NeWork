@@ -5,31 +5,28 @@
     android:id="@+id/cardUser"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/mini_spacing"
     android:layout_marginStart="@dimen/mini_spacing"
+    android:layout_marginTop="@dimen/mini_spacing"
     android:layout_marginEnd="@dimen/mini_spacing"
-    android:backgroundTint="@color/md_theme_light_surface"
-    >
+    android:backgroundTint="@color/md_theme_light_surface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mini_spacing"
         android:layout_marginStart="@dimen/mini_spacing"
+        android:layout_marginTop="@dimen/mini_spacing"
         android:layout_marginEnd="@dimen/mini_spacing"
-        android:layout_marginBottom="@dimen/mini_spacing"
-        >
+        android:layout_marginBottom="@dimen/mini_spacing">
 
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="@dimen/posts_avatar_size"
             android:layout_height="@dimen/posts_avatar_size"
             android:layout_marginBottom="@dimen/common_spacing"
+            android:contentDescription="@string/avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/avatar" />
-
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/userName"
@@ -39,11 +36,10 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/avatar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="@string/author" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,5 +8,5 @@ class GetJobsByUserIdUseCase @Inject constructor(
     private val jobRepository: JobRepository
 ) {
 
-    suspend fun getJobsByUserId(userId: Int) : List<Job> = jobRepository.getJobsByUserId(userId)
+    suspend fun getJobsByUserId(userId: Int): List<Job> = jobRepository.getJobsByUserId(userId)
 }

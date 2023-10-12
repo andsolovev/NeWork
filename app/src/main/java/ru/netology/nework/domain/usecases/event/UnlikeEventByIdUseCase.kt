@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class UnlikeEventByIdUseCase @Inject constructor(
     private val repository: EventRepository
-){
+) {
     suspend fun unlikeEventById(id: Int) = repository.unlikeEventById(id)
 }

@@ -13,7 +13,7 @@ import ru.netology.nework.presentation.adapter.onInteractionListener.OnUserInter
 
 class UserAdapter(
     private val onUserInteractionListener: OnUserInteractionListener
-) : ListAdapter <User, UserViewHolder>(UserDiffCallback) {
+) : ListAdapter<User, UserViewHolder>(UserDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = CardUserBinding.inflate(

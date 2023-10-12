@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class RemoveEventByIdUseCase @Inject constructor(
     private val repository: EventRepository
-){
+) {
     suspend fun removeEventById(id: Int) = repository.removeEventById(id)
 }

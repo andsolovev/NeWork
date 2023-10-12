@@ -10,7 +10,6 @@ import ru.netology.nework.domain.model.Attachment
 import ru.netology.nework.domain.model.Coordinates
 import ru.netology.nework.domain.model.Event
 import ru.netology.nework.domain.model.EventType
-import ru.netology.nework.domain.model.Photo
 import ru.netology.nework.domain.repository.EventRepository
 import ru.netology.nework.domain.usecases.event.GetAllEventsUseCase
 import ru.netology.nework.domain.usecases.event.GetNewerEventsUseCase
@@ -24,11 +23,10 @@ import ru.netology.nework.utils.SingleLiveEvent
 import javax.inject.Inject
 
 val emptyEvent = Event()
-private val emptyPhoto = Photo()
 
 @HiltViewModel
 class EventViewModel @Inject constructor(
-    private val repository: EventRepository
+    repository: EventRepository
 ) : ViewModel() {
 
     val data = repository.data
@@ -47,10 +45,6 @@ class EventViewModel @Inject constructor(
     private val _eventCreated = SingleLiveEvent<Unit>()
     val eventCreated: LiveData<Unit>
         get() = _eventCreated
-
-    private val _photo = MutableLiveData(emptyPhoto)
-    val photo: LiveData<Photo>
-        get() = _photo
 
     fun saveEvent() {
         edited.value?.let {

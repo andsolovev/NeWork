@@ -68,9 +68,7 @@ class FragmentProfile : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-//        val userId = userViewModel.user.value?.id ?: 0
         val userId = requireArguments().getInt(USER_ID_KEY)
-//        val ownedByMe = authorId == authViewModel.state.value?.id
         val ownedByMe = userId == authViewModel.state.value?.id
 
         Log.d("id", "$userId, ${authViewModel.state.value?.id}")
@@ -166,7 +164,6 @@ class FragmentProfile : Fragment() {
                 } else {
                     isPaused = false
                     progressBar.visibility = View.VISIBLE
-//                    mediaPlayer.reset()
                     mediaPlayer.setDataSource(post.attachment?.url)
                     mediaPlayer.prepare()
                     mediaPlayer.start()
@@ -193,6 +190,7 @@ class FragmentProfile : Fragment() {
                 mediaPlayer.pause()
                 isPaused = true
             }
+
             //
             override fun onStopAudio(post: Post) {
                 mediaPlayer.apply {
@@ -218,7 +216,7 @@ class FragmentProfile : Fragment() {
                     setOnPreparedListener { mp ->
                         progressBar.visibility = View.GONE
 
-                        if(mp.videoHeight > mp.videoWidth) {
+                        if (mp.videoHeight > mp.videoWidth) {
                             videoGroup.layoutParams?.height =
                                 (displayWidth * (mp.videoHeight.toDouble() / mp.videoWidth)).toInt()
                             videoView.layoutParams.height = videoGroup.layoutParams?.height!!
@@ -253,10 +251,6 @@ class FragmentProfile : Fragment() {
                     }
                 } else unauthorized()
             }
-
-            override fun onCoords(post: Post) {
-                TODO("Not yet implemented")
-            }
         })
 
         binding.userProfileToolbar.jobList.adapter = jobAdapter
@@ -283,9 +277,7 @@ class FragmentProfile : Fragment() {
         binding.userProfileToolbar.name.text = ""
 
         userViewModel.user.observe(viewLifecycleOwner) {
-//            val userId = userViewModel.user.value?.id ?: 0
-//            jobViewModel.getJobsByUserId(userId)
-//            postViewModel.getWallPosts(userId)
+
             binding.progressBarPosts.visibility = View.INVISIBLE
             binding.userProfileToolbar.apply {
                 name.text = userViewModel.user.value?.name

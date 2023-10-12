@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/mini_spacing"
     android:layout_marginStart="@dimen/mini_spacing"
+    android:layout_marginTop="@dimen/mini_spacing"
     android:layout_marginEnd="@dimen/mini_spacing"
     android:backgroundTint="@color/md_theme_light_surface">
 
@@ -13,55 +13,55 @@
         android:id="@+id/cardPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mini_spacing"
         android:layout_marginStart="@dimen/mini_spacing"
-        android:layout_marginEnd="@dimen/mini_spacing"
-        >
+        android:layout_marginTop="@dimen/mini_spacing"
+        android:layout_marginEnd="@dimen/mini_spacing">
 
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="@dimen/posts_avatar_size"
             android:layout_height="@dimen/posts_avatar_size"
             android:layout_marginBottom="@dimen/common_spacing"
+            android:contentDescription="@string/avatar"
+            app:layout_constraintBottom_toTopOf="@id/header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/header"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/avatar" />
+            tools:srcCompat="@tools:sample/avatars" />
 
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:singleLine="true"
-            android:ellipsize="end"
             android:layout_marginStart="@dimen/common_spacing"
-            app:layout_constraintTop_toTopOf="parent"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/avatar"
-            tools:text="@string/author"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/author" />
 
         <TextView
             android:id="@+id/job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/author"
             app:layout_constraintStart_toStartOf="@id/author"
-            tools:text="@string/job"/>
+            app:layout_constraintTop_toBottomOf="@id/author"
+            tools:text="@string/job" />
 
         <TextView
             android:id="@+id/published"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/job"
             app:layout_constraintStart_toStartOf="@id/author"
-            tools:text="@tools:sample/date/ddmmyy"/>
+            app:layout_constraintTop_toBottomOf="@id/job"
+            tools:text="@tools:sample/date/ddmmyy" />
 
         <ImageView
             android:id="@+id/menuButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/menu_button"
             app:layout_constraintBottom_toBottomOf="@id/avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/avatar"
@@ -72,66 +72,69 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="author, avatar, published"/>
+            app:constraint_referenced_ids="author, avatar, published" />
 
         <TextView
             android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/header"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/mini_spacing"
-            tools:text="OFFLINE"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            tools:text="OFFLINE" />
 
         <TextView
             android:id="@+id/dateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/type"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/mini_spacing"
-            tools:text="@tools:sample/date/ddmmyy"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/type"
+            tools:text="@tools:sample/date/ddmmyy" />
 
         <TextView
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/dateTime"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/mini_spacing"
-            tools:text="@tools:sample/lorem"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateTime"
+            tools:text="@tools:sample/lorem" />
 
         <ImageButton
             android:id="@+id/linkButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorTransparent"
-            app:tint="@color/md_theme_dark_primary"
+            android:contentDescription="@string/link_button"
+            app:layout_constraintBottom_toBottomOf="@id/type"
             app:layout_constraintStart_toEndOf="@id/type"
             app:layout_constraintTop_toTopOf="@id/type"
-            app:layout_constraintBottom_toBottomOf="@id/type"
-            app:srcCompat="@drawable/ic_link_24" />
+            app:srcCompat="@drawable/ic_link_24"
+            app:tint="@color/md_theme_dark_primary" />
 
         <ImageButton
             android:id="@+id/geoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorTransparent"
+            android:contentDescription="@string/location_button"
             android:padding="0dp"
-            app:tint="@color/md_theme_dark_primary"
+            app:layout_constraintBottom_toBottomOf="@id/type"
             app:layout_constraintStart_toEndOf="@id/linkButton"
             app:layout_constraintTop_toTopOf="@id/type"
-            app:layout_constraintBottom_toBottomOf="@id/type"
-            app:srcCompat="@drawable/ic_navigation_24" />
+            app:srcCompat="@drawable/ic_navigation_24"
+            app:tint="@color/md_theme_dark_primary" />
 
         <ImageView
             android:id="@+id/image_attachment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginTop="@dimen/mini_spacing"
-            app:layout_constraintTop_toBottomOf="@id/content"
+            android:contentDescription="@string/image_attachment"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/link"
+            app:layout_constraintTop_toBottomOf="@id/content"
             tools:srcCompat="@tools:sample/avatars"
             tools:visibility="visible" />
 
@@ -139,12 +142,12 @@
             android:id="@+id/link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autoLink="web"
-            app:layout_constraintTop_toBottomOf="@id/image_attachment"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="@dimen/mini_spacing"
             android:layout_marginBottom="@dimen/mini_spacing"
-            tools:text="http://google.com"/>
+            android:autoLink="web"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_attachment"
+            tools:text="http://google.com" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/audio_group"
@@ -178,18 +181,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="invisible"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
                 android:max="100"
                 android:progress="0"
-                tools:visibility="visible"/>
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <ImageButton
                 android:id="@+id/button_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:contentDescription="@string/play_button"
                 android:src="@drawable/ic_play_24" />
 
             <ImageButton
@@ -197,6 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:contentDescription="@string/pause_button"
                 android:src="@drawable/ic_pause_24" />
 
             <ImageButton
@@ -204,28 +209,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:contentDescription="@string/stop_button"
                 android:src="@drawable/ic_stop_24" />
 
             <ImageButton
                 android:id="@+id/invisible_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:visibility="invisible"
-                android:src="@drawable/ic_stop_24" />
+                android:clickable="false"
+                android:contentDescription="@string/invisible_button"
+                android:src="@drawable/ic_stop_24"
+                android:visibility="invisible" />
 
         </LinearLayout>
-
-        <!--        <VideoView-->
-        <!--            android:id="@+id/video_player"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            app:layout_constraintDimensionRatio="2"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/buttons_audio"-->
-
-
-
-        <!--            />-->
 
         <FrameLayout
             android:id="@+id/video_group"
@@ -233,8 +229,8 @@
             android:layout_height="200dp"
             android:backgroundTint="@color/colorTransparent"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttons_audio"
             tools:visibility="visible">
 
@@ -242,14 +238,15 @@
                 android:id="@+id/video_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
 
             <ImageButton
                 android:id="@+id/button_play_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:layout_gravity="center"
+                android:clickable="true"
+                android:contentDescription="@string/play_video_button"
                 android:src="@drawable/ic_play_24" />
 
             <ProgressBar
@@ -258,9 +255,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:indeterminate="true"
-                android:visibility="gone"
                 android:max="100"
-                android:progress="0" />
+                android:progress="0"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -269,62 +266,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="like_button"/>
+            app:constraint_referenced_ids="like_button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/like_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/mini_spacing"
-            app:layout_constraintTop_toBottomOf="@id/video_group"
-            app:layout_constraintBottom_toBottomOf="@id/cardPost"
-            app:icon="@drawable/ic_thumb_up_off_alt_24"
-            app:layout_constraintStart_toStartOf="parent"
-            android:checkable="true"
-            app:iconTint="@color/like_checkbox_tint"
-            tools:text="@string/like_number_sample"
-            android:textColor="@color/cardview_dark_background"
             android:backgroundTint="@color/md_theme_light_surface"
-            android:padding="@dimen/mini_spacing"/>
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/participate_button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/mini_spacing"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/video_group"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/cardPost"-->
-<!--            app:layout_constraintStart_toEndOf="@id/participants"-->
-<!--            app:icon="@drawable/ic_thumb_up_off_alt_24"-->
-<!--            android:checkable="true"-->
-<!--            app:iconTint="@color/event_checkbox_tint"-->
-<!--            tools:text="@string/like_number_sample"-->
-<!--            android:textColor="@color/cardview_dark_background"-->
-<!--            android:backgroundTint="@color/md_theme_light_surface"-->
-<!--            android:padding="@dimen/mini_spacing"/>-->
+            android:checkable="true"
+            android:padding="@dimen/mini_spacing"
+            android:textColor="@color/cardview_dark_background"
+            app:icon="@drawable/ic_thumb_up_off_alt_24"
+            app:iconTint="@color/like_checkbox_tint"
+            app:layout_constraintBottom_toBottomOf="@id/cardPost"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/video_group"
+            tools:text="@string/like_number_sample" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/participants"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_light_surface"
             android:clickable="true"
             android:text="@string/participants"
+            android:textColor="@color/cardview_dark_background"
             app:layout_constraintStart_toEndOf="@id/like_button"
-            app:layout_constraintTop_toBottomOf="@id/footer"
-            android:backgroundTint="@color/md_theme_light_surface"
-            android:textColor="@color/cardview_dark_background"/>
+            app:layout_constraintTop_toBottomOf="@id/footer" />
 
         <CheckBox
             android:id="@+id/participantCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I'm in!"
+            android:text="@string/i_m_in"
             app:layout_constraintStart_toEndOf="@id/participants"
-            app:layout_constraintTop_toTopOf="@id/participants"
-
-
-            />
-
+            app:layout_constraintTop_toTopOf="@id/participants" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

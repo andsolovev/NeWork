@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GetNewerPostsUseCase @Inject constructor(
     private val repository: PostRepository
-){
+) {
     suspend operator fun invoke() = repository.getNewerPosts()
 }

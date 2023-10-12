@@ -10,7 +10,7 @@ import ru.netology.nework.data.database.entity.EventEntity
 @Dao
 interface EventDao {
     @Query("SELECT * FROM EventEntity ORDER BY id DESC")
-    fun getAll() : Flow<List<EventEntity>>
+    fun getAll(): Flow<List<EventEntity>>
 
     @Query("SELECT max(`id`) FROM EventEntity")
     suspend fun max(): Int?

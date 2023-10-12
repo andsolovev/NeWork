@@ -19,14 +19,6 @@ interface AuthApiService {
         @Field("password") password: String,
     ): Response<AuthState>
 
-//    @Multipart
-//    @POST("users/registration")
-//    suspend fun registerUser(
-//        @Part("login") login: RequestBody,
-//        @Part("password") password: RequestBody,
-//        @Part("name")name: RequestBody
-//    ): Response<AuthState>
-
     @Multipart
     @POST("users/registration")
     suspend fun registerUser(

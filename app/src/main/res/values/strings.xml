@@ -50,5 +50,28 @@
     <string name="save">SAVE</string>
     <string name="attachment_link">Attached %1$s: %2$s</string>
     <string name="attachment_url_here">Attachment url here</string>
+    <string name="add_to_your_event_post">Add to your event post:</string>
+    <string name="longitude_here">Longitude here</string>
+    <string name="add_to_your_post">Add to your post:</string>
+    <string name="addpostbutton">AddPostButton</string>
+    <string name="offline">OFFLINE</string>
+    <string name="online">ONLINE</string>
+    <string name="event_date">Event date</string>
+    <string name="describe_the_event_here">Describe the event here</string>
+    <string name="event_type">Event type</string>
+    <string name="latitude_here">Latitude here</string>
+    <string name="logout_button">Logout button</string>
+    <string name="add_job_button">Add job button</string>
+    <string name="menu_button">Menu button</string>
+    <string name="image_attachment">Image attachment</string>
+    <string name="play_button">Play button</string>
+    <string name="pause_button">Pause button</string>
+    <string name="stop_button">Stop button</string>
+    <string name="invisible_button">Invisible button</string>
+    <string name="play_video_button">Play video button</string>
+    <string name="link_button">Link button</string>
+    <string name="location_button">Location button</string>
+    <string name="i_m_in">I\'m in!</string>
+    <string name="add_event_button">Add event button</string>
 
 </resources>

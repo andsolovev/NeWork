@@ -6,49 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.FragmentUsers">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <com.google.android.material.appbar.MaterialToolbar-->
-<!--            android:id="@+id/topAppBar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            app:layout_scrollFlags="scroll|enterAlways"-->
-<!--            app:title="NeWork Users"-->
-<!--            app:menu="@menu/menu_auth" />-->
-
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/cardview_light_background"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/card_user"
-        android:backgroundTint="@color/cardview_light_background" />
+        tools:listitem="@layout/card_user" />
 
     <TextView
         android:id="@+id/emptyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty_list"
-        android:visibility="gone"
-        android:padding="24dp"
-        android:textSize="18sp"
         android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/empty_list"
+        android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <fragment-->
-<!--        android:id="@+id/nav_host_users"-->
-<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:navGraph="@navigation/nav_users" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

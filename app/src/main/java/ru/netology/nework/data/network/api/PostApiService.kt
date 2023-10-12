@@ -12,7 +12,7 @@ import ru.netology.nework.domain.model.Post
 interface PostApiService {
 
     @GET("posts")
-    suspend fun getPosts() : Response<List<Post>>
+    suspend fun getPosts(): Response<List<Post>>
 
     @GET("posts/{id}/newer")
     suspend fun getNewer(@Path("id") id: Int): Response<List<Post>>
@@ -33,10 +33,10 @@ interface PostApiService {
     ): Response<List<Post>>
 
     @GET("{author_id}/wall")
-    suspend fun getPostsWall(@Path("author_id") id: Int) : Response<List<Post>>
+    suspend fun getPostsWall(@Path("author_id") id: Int): Response<List<Post>>
 
     @POST("posts")
-    suspend fun savePost(@Body post: Post) : Response<Post>
+    suspend fun savePost(@Body post: Post): Response<Post>
 
     @DELETE("posts/{post_id}")
     suspend fun removePostById(@Path("post_id") id: Int): Response<Unit>

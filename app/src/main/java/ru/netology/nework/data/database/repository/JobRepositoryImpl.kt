@@ -27,7 +27,7 @@ class JobRepositoryImpl @Inject constructor(
     override val data: Flow<List<Job>> = dao.getAll()
         .map { it.toDto() }
 
-    override suspend fun getJobsByUserId(userId: Int) : List<Job> {
+    override suspend fun getJobsByUserId(userId: Int): List<Job> {
         dao.removeAll()
         try {
             val response = apiService.getJobsByUserId(userId)

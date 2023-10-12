@@ -229,7 +229,6 @@ class FragmentEvents : Fragment() {
         binding.eventList.adapter = adapter
 
         eventViewModel.getAllEvents()
-//        eventViewModel.getNewerEvents()
 
         viewLifecycleOwner.lifecycle.coroutineScope.launch {
             eventViewModel.data.collectLatest { events ->

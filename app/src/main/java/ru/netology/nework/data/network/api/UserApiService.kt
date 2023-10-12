@@ -7,8 +7,8 @@ import ru.netology.nework.domain.model.User
 
 interface UserApiService {
     @GET("users")
-    suspend fun getAllUsers() : Response<List<User>>
+    suspend fun getAllUsers(): Response<List<User>>
 
     @GET("users/{id}")
-    suspend fun getUserById(@Path("id") id: Int) : Response<User>
+    suspend fun getUserById(@Path("id") id: Int): Response<User>
 }

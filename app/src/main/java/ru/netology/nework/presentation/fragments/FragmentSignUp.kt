@@ -23,19 +23,21 @@ class FragmentSignUp : Fragment() {
 
     private val authViewModel: AuthViewModel by activityViewModels()
 
-    private val photoPickerContract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        when(it.resultCode) {
-            ImagePicker.RESULT_ERROR -> Toast.makeText(
-                requireContext(),
-                "photo_pic_error",
-                Toast.LENGTH_SHORT
-            ).show()
-            Activity.RESULT_OK -> {
-                val uri = it.data?.data ?: return@registerForActivityResult
-                authViewModel.changePhoto(uri, uri.toFile())
+    private val photoPickerContract =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            when (it.resultCode) {
+                ImagePicker.RESULT_ERROR -> Toast.makeText(
+                    requireContext(),
+                    "photo_pic_error",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                Activity.RESULT_OK -> {
+                    val uri = it.data?.data ?: return@registerForActivityResult
+                    authViewModel.changePhoto(uri, uri.toFile())
+                }
             }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,13 +91,13 @@ class FragmentSignUp : Fragment() {
                 Toast.makeText(context, R.string.passwords_do_not_match, Toast.LENGTH_LONG).show()
             } else {
                 authViewModel.registerUser(
-                        binding.login.text.toString(),
-                        binding.password.text.toString(),
-                        binding.name.text.toString(),
-                        authViewModel.photo.value?.file
-                    )
+                    binding.login.text.toString(),
+                    binding.password.text.toString(),
+                    binding.name.text.toString(),
+                    authViewModel.photo.value?.file
+                )
                 authViewModel.state.observe(viewLifecycleOwner) {
-                    if(it.id != 0) {
+                    if (it.id != 0) {
                         Toast.makeText(
                             context,
                             R.string.you_have_successfully_registered,

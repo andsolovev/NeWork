@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class ParticipateEventByIdUseCase @Inject constructor(
     private val repository: EventRepository
-){
+) {
     suspend fun participateEventById(id: Int) = repository.participateById(id)
 }

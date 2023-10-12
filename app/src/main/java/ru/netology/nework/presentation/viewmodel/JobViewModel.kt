@@ -64,13 +64,19 @@ class JobViewModel @Inject constructor(
         editedJob.value = emptyJob
     }
 
-    fun changeContent(name: String, position: String, jobStart: String, jobFinish: String?, link: String) {
+    fun changeContent(
+        name: String,
+        position: String,
+        jobStart: String,
+        jobFinish: String?,
+        link: String
+    ) {
         if (editedJob.value?.name != name ||
             editedJob.value?.position != position ||
             editedJob.value?.start != jobStart ||
             editedJob.value?.finish != jobFinish ||
             editedJob.value?.link != link
-            ) {
+        ) {
             editedJob.value = editedJob.value?.copy(
                 name = name,
                 position = position,
@@ -94,9 +100,6 @@ class JobViewModel @Inject constructor(
         repository.removeJob()
         _job.value = emptyList()
     }
-
-
-
 
 
 }

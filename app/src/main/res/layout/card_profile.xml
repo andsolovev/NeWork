@@ -11,21 +11,22 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/common_spacing"
         android:contentDescription="@string/avatar"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/baseline_logout_24"
+        android:layout_margin="@dimen/mini_spacing"
         android:backgroundTint="@color/colorTransparent"
+        android:contentDescription="@string/logout_button"
         app:layout_constraintEnd_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        android:layout_margin="@dimen/mini_spacing"/>
+        app:srcCompat="@drawable/baseline_logout_24" />
 
     <ImageView
         android:id="@+id/noAvatar"
@@ -44,108 +45,104 @@
         android:id="@+id/addJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/md_theme_light_tertiaryContainer"
+        android:backgroundTint="@color/md_theme_dark_onPrimaryContainer"
+        android:contentDescription="@string/add_job_button"
         android:src="@drawable/ic_add_24"
         app:layout_constraintBottom_toBottomOf="@id/job"
         app:layout_constraintStart_toEndOf="@id/job"
-        app:layout_constraintTop_toTopOf="@id/job"
-
-        />
+        app:layout_constraintTop_toTopOf="@id/job" />
 
     <ProgressBar
         android:id="@+id/progressBarAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:visibility="invisible"
         android:max="100"
         android:progress="0"
-        app:layout_constraintStart_toStartOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
-        tools:visibility="visible"/>
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintStart_toStartOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/name"
-        android:textColor="@color/md_theme_light_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
         android:layout_margin="@dimen/common_spacing"
-        android:visibility="invisible"
+        android:gravity="center|bottom"
         android:shadowColor="@color/md_theme_dark_scrim"
         android:shadowRadius="4"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/md_theme_light_surface"
+        android:textSize="32sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
-        android:gravity="center|bottom"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="@tools:sample/lorem"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_marginHorizontal="@dimen/common_spacing"
-        android:gravity="start"
         android:layout_marginTop="@dimen/mini_spacing"
-        app:layout_constraintTop_toBottomOf="@id/avatar"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="start"
+        android:text="@string/jobs"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@id/addJob"
-        android:text="@string/jobs"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jobList"
-        android:layout_marginHorizontal="@dimen/mini_spacing"
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        android:layout_marginHorizontal="@dimen/mini_spacing"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/job"
-        android:orientation="horizontal"
-        tools:listitem="@layout/card_job"
-        />
+        tools:listitem="@layout/card_job" />
 
     <TextView
         android:id="@+id/no_job"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/the_user_did_not_provide_information_about_his_job"
         android:gravity="center"
+        android:text="@string/the_user_did_not_provide_information_about_his_job"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/jobList"
-        app:layout_constraintEnd_toEndOf="@id/jobList"
-        app:layout_constraintTop_toTopOf="@id/jobList"
         app:layout_constraintBottom_toBottomOf="@id/jobList"
-        tools:visibility="visible"/>
+        app:layout_constraintEnd_toEndOf="@id/jobList"
+        app:layout_constraintStart_toStartOf="@id/jobList"
+        app:layout_constraintTop_toTopOf="@id/jobList"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBarJob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:visibility="invisible"
         android:max="100"
         android:progress="0"
-        app:layout_constraintStart_toStartOf="@id/no_job"
-        app:layout_constraintEnd_toEndOf="@id/no_job"
-        app:layout_constraintTop_toTopOf="@id/no_job"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/no_job"
-        tools:visibility="visible"/>
+        app:layout_constraintEnd_toEndOf="@id/no_job"
+        app:layout_constraintStart_toStartOf="@id/no_job"
+        app:layout_constraintTop_toTopOf="@id/no_job"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/posts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_marginHorizontal="@dimen/common_spacing"
-        android:gravity="start"
         android:layout_marginBottom="@dimen/mini_spacing"
-        app:layout_constraintTop_toBottomOf="@id/jobList"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="start"
+        android:text="@string/posts2"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/posts2"/>
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jobList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

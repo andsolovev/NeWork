@@ -17,7 +17,14 @@ interface OnEventInteractionListener {
     fun onPauseAudio(event: Event)
     fun onStopAudio(event: Event)
     fun onPlayAudio(event: Event, seekBar: SeekBar, progressBar: View)
-    fun onPlayVideo(event: Event, videoView: VideoView, progressBar: View, playButton: View, videoGroup: FrameLayout)
+    fun onPlayVideo(
+        event: Event,
+        videoView: VideoView,
+        progressBar: View,
+        playButton: View,
+        videoGroup: FrameLayout
+    )
+
     fun onOpenUserProfile(event: Event)
     fun onCoords(event: Event)
 }

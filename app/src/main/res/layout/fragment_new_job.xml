@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
@@ -20,31 +20,31 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/company_title"
-        android:gravity="center"
-        android:inputType="textMultiLine"
         android:layout_marginHorizontal="@dimen/common_spacing"
+        android:gravity="center"
+        android:hint="@string/company_title"
+        android:inputType="textMultiLine"
+        android:paddingTop="@dimen/common_spacing"
         app:layout_constraintTop_toBottomOf="@id/textView"
-        tools:layout_editor_absoluteX="0dp"
-        android:paddingTop="@dimen/common_spacing" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/position"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/name"
         android:layout_marginHorizontal="@dimen/common_spacing"
-        android:hint="@string/position"
         android:gravity="center"
+        android:hint="@string/position"
         android:inputType="textMultiLine"
-        android:paddingTop="@dimen/common_spacing"/>
+        android:paddingTop="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editJobStartLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start|top"
-        android:hint="Job start"
+        android:hint="@string/job_start"
         android:inputType="date"
         android:paddingHorizontal="@dimen/common_spacing"
         android:paddingTop="@dimen/common_spacing"
@@ -58,31 +58,12 @@
             tools:text="@tools:sample/date/ddmmyy" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-<!--    <EditText-->
-<!--        android:id="@+id/start"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="date"-->
-<!--        android:hint="@string/job_start"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/position" />-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/finish"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="date"-->
-<!--        android:hint="@string/job_finish"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/editJobStartLayout" />-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editJobFinishLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start|top"
-        android:hint="Job finish"
+        android:hint="@string/job_finish"
         android:inputType="date"
         android:paddingHorizontal="@dimen/common_spacing"
         android:paddingTop="@dimen/common_spacing"
@@ -101,21 +82,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/editJobFinishLayout"
-        android:hint="@string/link_here"
         android:gravity="center"
+        android:hint="@string/link_here"
         android:inputType="text"
-        android:paddingTop="@dimen/common_spacing"/>
+        android:paddingTop="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/editJobFinishLayout" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_spacing"
         android:text="@string/add"
-        app:layout_constraintTop_toBottomOf="@id/link"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/common_spacing" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/link" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

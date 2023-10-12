@@ -138,8 +138,6 @@ class EventViewHolder(
                 .timeout(10_000)
                 .error(R.drawable.ic_image_24)
                 .into(binding.imageAttachment)
-
-
         }
     }
 }

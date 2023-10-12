@@ -47,10 +47,6 @@ class PostRepositoryImpl @Inject constructor(
             }
         }
 
-//    override val wall = wallDao.getAll()
-//        .map { it.toDto() }
-//        .flowOn(Dispatchers.Default)
-
     override val wall = wallDao.getAll()
         .map { it.toDto() }
         .flowOn(Dispatchers.Default)
@@ -58,7 +54,7 @@ class PostRepositoryImpl @Inject constructor(
     override suspend fun getAll() {
         try {
             val response = apiService.getPosts()
-            if(!response.isSuccessful) {
+            if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw Exception("Body is null")
@@ -89,7 +85,7 @@ class PostRepositoryImpl @Inject constructor(
         wallDao.removeAll()
         try {
             val response = apiService.getPostsWall(userId)
-            if(!response.isSuccessful) {
+            if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw ApiException(response.code(), response.message())
@@ -103,7 +99,7 @@ class PostRepositoryImpl @Inject constructor(
     override suspend fun savePost(post: Post) {
         try {
             val response = apiService.savePost(post)
-            if(!response.isSuccessful) {
+            if (!response.isSuccessful) {
                 throw ApiException(response.code(), response.message())
             }
             val body = response.body() ?: throw ApiException(response.code(), response.message())
