@@ -36,21 +36,3 @@ class FragmentAttachment : Fragment() {
         return binding.root
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -20,6 +20,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -43,9 +44,9 @@ import ru.netology.nework.presentation.viewmodel.UserViewModel
 @AndroidEntryPoint
 class FragmentProfile : Fragment() {
 
-    private val postViewModel: PostViewModel by activityViewModels()
+    private val postViewModel: PostViewModel by viewModels()
     private val userViewModel: UserViewModel by activityViewModels()
-    private val jobViewModel: JobViewModel by activityViewModels()
+    private val jobViewModel: JobViewModel by viewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
 
     private var _binding: FragmentProfileBinding? = null
@@ -305,23 +306,8 @@ class FragmentProfile : Fragment() {
         return binding.root
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        Log.d("pause", "paused!!!")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("destr", "view destr!!!")
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("destr", "destr!!!")
-        userViewModel.vipeUser()
-        jobViewModel.vipeJob()
         binding.noPosts.visibility = View.INVISIBLE
         binding.userProfileToolbar.noJob.visibility = View.INVISIBLE
     }
@@ -329,11 +315,5 @@ class FragmentProfile : Fragment() {
     private fun unauthorized() {
         Toast.makeText(context, "Sign in to continue", Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_fragment_posts_to_fragmentSignIn)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("resume", "view resumed!!!")
-
     }
 }

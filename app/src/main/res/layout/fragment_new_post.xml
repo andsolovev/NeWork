@@ -137,7 +137,7 @@
                 android:id="@+id/mediaUrl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="top"
+                android:layout_gravity="center"
                 android:ellipsize="middle"
                 android:gravity="center"
                 android:text="@string/attachment_link"

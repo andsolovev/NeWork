@@ -40,16 +40,15 @@ val emptyPost = Post(
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    repository: PostRepository
+    repository: PostRepository,
+    private val getAllPostsUseCase: GetAllPostsUseCase,
+    private val savePostUseCase: SavePostUseCase,
+    private val likePostByIdUseCase: LikePostByIdUseCase,
+    private val unlikePostByIdUseCase: UnlikePostByIdUseCase,
+    private val removePostByIdUseCase: RemovePostByIdUseCase,
+    private val getWallUseCase: GetWallUseCase,
+    private val getNewerPostsUseCase: GetNewerPostsUseCase,
 ) : ViewModel() {
-
-    val getAllPostsUseCase = GetAllPostsUseCase(repository)
-    val savePostUseCase = SavePostUseCase(repository)
-    val likePostByIdUseCase = LikePostByIdUseCase(repository)
-    val unlikePostByIdUseCase = UnlikePostByIdUseCase(repository)
-    val removePostByIdUseCase = RemovePostByIdUseCase(repository)
-    val getWallUseCase = GetWallUseCase(repository)
-    val getNewerPostsUseCase = GetNewerPostsUseCase(repository)
 
     val data = repository.data
 

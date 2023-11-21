@@ -25,7 +25,10 @@ val emptyJob = Job(
 
 @HiltViewModel
 class JobViewModel @Inject constructor(
-    private val repository: JobRepository
+    private val repository: JobRepository,
+    private val getJobsByUserIdUseCase: GetJobsByUserIdUseCase,
+    private val saveJobUseCase: SaveJobUseCase,
+    private val removeJobByIdUseCase: RemoveJobByIdUseCase,
 ) : ViewModel() {
 
     val data = repository.data
@@ -39,10 +42,6 @@ class JobViewModel @Inject constructor(
     private val _job = MutableLiveData<List<Job>>()
     val job: LiveData<List<Job>>
         get() = _job
-
-    val getJobsByUserIdUseCase = GetJobsByUserIdUseCase(repository)
-    val saveJobUseCase = SaveJobUseCase(repository)
-    val removeJobByIdUseCase = RemoveJobByIdUseCase(repository)
 
     fun getJobsByUserId(userId: Int) {
         viewModelScope.launch {

@@ -20,6 +20,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -38,9 +39,9 @@ import ru.netology.nework.presentation.viewmodel.UserViewModel
 
 @AndroidEntryPoint
 class FragmentEvents : Fragment() {
-    private val eventViewModel: EventViewModel by activityViewModels()
+    private val eventViewModel: EventViewModel by viewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
-    private val userViewModel: UserViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     private val mediaPlayer = MediaPlayer()
     private var isPaused = false

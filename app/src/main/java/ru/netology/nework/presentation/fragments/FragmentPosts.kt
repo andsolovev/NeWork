@@ -4,8 +4,6 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +15,12 @@ import android.widget.Toast
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.netology.nework.R
 import ru.netology.nework.databinding.FragmentPostsBinding
@@ -34,16 +35,13 @@ import ru.netology.nework.presentation.viewmodel.UserViewModel
 @AndroidEntryPoint
 class FragmentPosts : Fragment() {
 
-    private val postViewModel: PostViewModel by activityViewModels()
+    private val postViewModel: PostViewModel by viewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
-    private val userViewModel: UserViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     private val mediaPlayer = MediaPlayer()
     private var isPaused = false
-
-    private var _binding: FragmentPostsBinding? = null
-    private val binding: FragmentPostsBinding
-        get() = _binding!!
+    private var playerJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +49,7 @@ class FragmentPosts : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentPostsBinding.inflate(inflater, container, false)
+        val binding = FragmentPostsBinding.inflate(inflater, container, false)
 
 //        postViewModel.getAllPosts()
 //        postViewModel.getNewerPosts()
@@ -86,8 +84,7 @@ class FragmentPosts : Fragment() {
                     putExtra(Intent.EXTRA_TEXT, post.content)
                     type = "text/plain"
                 }
-                val shareIntent = Intent.createChooser(intent, "Share Post")
-                startActivity(shareIntent)
+                startActivity(intent)
             }
 
             override fun onImage(post: Post) {
@@ -112,17 +109,14 @@ class FragmentPosts : Fragment() {
 
                 }
                 seekBar.max = mediaPlayer.duration
-                val handler = Handler(Looper.getMainLooper())
-                handler.postDelayed(object : Runnable {
-                    override fun run() {
-                        try {
-                            seekBar.progress = mediaPlayer.currentPosition
-                            handler.postDelayed(this, 1000)
-                        } catch (e: Exception) {
-                            seekBar.progress = 0
-                        }
+                playerJob?.cancel()
+                playerJob = viewLifecycleOwner.lifecycleScope.launch {
+                    while (true) {
+                        seekBar.progress = mediaPlayer.currentPosition
+                        delay(1_000)
                     }
-                }, 0)
+                }
+
                 mediaPlayer.setOnPreparedListener {
                     progressBar.visibility = View.INVISIBLE
                 }

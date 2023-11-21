@@ -14,7 +14,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    repository: UserRepository
+    repository: UserRepository,
+    private val getAllUsersUseCase: GetAllUsersUseCase,
+    private val getUserByIdUseCase: GetUserByIdUseCase,
 ) : ViewModel() {
 
     val data = repository.data
@@ -22,9 +24,6 @@ class UserViewModel @Inject constructor(
     private val _user = MutableLiveData<User>()
     val user: LiveData<User>
         get() = _user
-
-    val getAllUsersUseCase = GetAllUsersUseCase(repository)
-    val getUserByIdUseCase = GetUserByIdUseCase(repository)
 
     fun getAllUsers() = viewModelScope.launch {
         getAllUsersUseCase()

@@ -67,6 +67,7 @@ class PostViewHolder(
                 progressBarVideo.isVisible = true
                 it.isVisible = false
             }
+
             buttonPlay.setOnClickListener {
                 onPostInteractionListener.onPlayAudio(post, audioBar, progressBarAudio)
             }
@@ -79,9 +80,7 @@ class PostViewHolder(
             link.setOnClickListener {
                 post.link?.let { onPostInteractionListener.onLink(post) }
             }
-
-
-
+            
             menuButton.isVisible = post.ownedByMe
             menuButton.setOnClickListener {
                 PopupMenu(it.context, it).apply {

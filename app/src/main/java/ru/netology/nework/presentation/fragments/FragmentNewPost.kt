@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.webkit.URLUtil
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,11 +22,11 @@ import ru.netology.nework.utils.AndroidUtils
 @AndroidEntryPoint
 class FragmentNewPost : Fragment() {
 
-    private val postViewModel: PostViewModel by activityViewModels()
+    private val postViewModel: PostViewModel by viewModels()
 
-    var type: AttachmentType? = null
-    var url: String = ""
-    var attachment: Attachment? = null
+    private var type: AttachmentType? = null
+    private var url: String = ""
+    private var attachment: Attachment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -122,9 +122,14 @@ class FragmentNewPost : Fragment() {
 
             addUrl.setOnClickListener {
                 url = editAttachmentUrl.text.toString()
-                if (type != null && url != "" && URLUtil.isValidUrl(url)) {
-                    attachment = Attachment(url, type!!)
+
+                type?.takeIf {
+                    URLUtil.isValidUrl(url)
                 }
+                    ?.let {
+                        attachment = Attachment(url, it)
+                    }
+
                 binding.imageContainer.visibility = View.VISIBLE
                 AndroidUtils.hideKeyboard(requireView())
                 when (type) {

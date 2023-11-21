@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/common_spacing"
         android:text="@string/fill_in_the_following_fields_to_create_an_account"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:height="48dp"
+        android:background="@drawable/edit_text_back"
         android:gravity="center"
         android:hint="@string/company_title"
-        android:inputType="textMultiLine"
-        android:paddingTop="@dimen/common_spacing"
         app:layout_constraintTop_toBottomOf="@id/textView"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -33,10 +35,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:height="48dp"
+        android:background="@drawable/edit_text_back"
         android:gravity="center"
         android:hint="@string/position"
-        android:inputType="textMultiLine"
-        android:paddingTop="@dimen/common_spacing"
         app:layout_constraintTop_toBottomOf="@id/name" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -82,10 +85,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/common_spacing"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:height="48dp"
+        android:background="@drawable/edit_text_back"
         android:gravity="center"
         android:hint="@string/link_here"
-        android:inputType="text"
-        android:paddingTop="@dimen/common_spacing"
+        android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@id/editJobFinishLayout" />
 
     <Button

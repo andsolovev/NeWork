@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.webkit.URLUtil
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,13 +27,13 @@ import ru.netology.nework.utils.pickDate
 @AndroidEntryPoint
 class FragmentNewEvent : Fragment() {
 
-    private val eventViewModel: EventViewModel by activityViewModels()
+    private val eventViewModel: EventViewModel by viewModels()
 
-    var type: AttachmentType? = null
-    var url: String = ""
-    var eventType: EventType = EventType.OFFLINE
-    var attachment: Attachment? = null
-    var coordinates: Coordinates? = null
+    private var type: AttachmentType? = null
+    private var url: String = ""
+    private var eventType: EventType = EventType.OFFLINE
+    private var attachment: Attachment? = null
+    private var coordinates: Coordinates? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

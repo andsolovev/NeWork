@@ -26,19 +26,18 @@ val emptyEvent = Event()
 
 @HiltViewModel
 class EventViewModel @Inject constructor(
-    repository: EventRepository
+    repository: EventRepository,
+    private val getAllEventsUseCase: GetAllEventsUseCase,
+    private val getNewerEventsUseCase: GetNewerEventsUseCase,
+    private val saveEventUseCase: SaveEventUseCase,
+    private val likeEventByIdUseCase: LikeEventByIdUseCase,
+    private val unlikeEventByIdUseCase: UnlikeEventByIdUseCase,
+    private val removeEventByIdUseCase: RemoveEventByIdUseCase,
+    private val participateEventByIdUseCase: ParticipateEventByIdUseCase,
+    private val unparticipateEventByIdUseCase: UnparticipateEventByIdUseCase,
 ) : ViewModel() {
 
     val data = repository.data
-
-    val getAllEventsUseCase = GetAllEventsUseCase(repository)
-    val getNewerEventsUseCase = GetNewerEventsUseCase(repository)
-    val saveEventUseCase = SaveEventUseCase(repository)
-    val likeEventByIdUseCase = LikeEventByIdUseCase(repository)
-    val unlikeEventByIdUseCase = UnlikeEventByIdUseCase(repository)
-    val removeEventByIdUseCase = RemoveEventByIdUseCase(repository)
-    val participateEventByIdUseCase = ParticipateEventByIdUseCase(repository)
-    val unparticipateEventByIdUseCase = UnparticipateEventByIdUseCase(repository)
 
     val edited = MutableLiveData(emptyEvent)
 
