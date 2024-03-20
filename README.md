@@ -3,7 +3,14 @@
 
 An application in LinkedIn format in which users can create posts with media resources and geotags. The application displays the positions where the user worked, his social connections (in which posts he is marked, in which conferences he is a speaker or participant), thematic posts, check-ins at conferences, links to YouTube, etc.
 
-Stack: Kotlin, XML, Room, Retrofit2, Coroutines, Dagger2/Hilt, Glide, GSON, Google Maps, Pager
+The functionality includes:
+1. Registration/authentication.
+2. CRUD for the following types of entities: posts, events, jobs.
+3. "Playback" of media attachments (for images - display, for audio and video - playback).
+4. Click on external links (the `link` fields if they link to external resources).
+5. Likes, shares.
+
+Stack: Clean architecture + MVVM, Kotlin, XML, Room, Retrofit2, Coroutines, Dagger2/Hilt, Glide, GSON, Google Maps, Pager.
 
 ### Screenshots:
 ![Screenshot1](screenshots/1.png) ![Screenshot2](screenshots/2.png) ![Screenshot3](screenshots/3.png)
